@@ -17,7 +17,7 @@ function verificar(){
         img.setAttribute("height", "250")
 
         var genero = ''
-        if(fsex[0].checked){
+        if(fsex[0].checked){ // elementos com o mesmo "name" são automaticamente adicionados em um vetor pelo navegador
             genero = 'Homem'
             if(idade >= 0 &&  idade < 10){
                 // Criança
@@ -32,7 +32,7 @@ function verificar(){
                 // Idoso
                 img.setAttribute('src', 'foto-adulto-m.jpg')
             }
-        }else if(fsex[1].checked){
+        }else if(fsex[1].checked){ // elementos com o mesmo "name" são automaticamente adicionados em um vetor pelo navegador
             genero = 'Mulher'
             if(idade >= 0 &&  idade < 10){
                 // Criança
