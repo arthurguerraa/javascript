@@ -17,3 +17,12 @@ var quadrado = {
 
 console.log(quadrado.area(5));
 console.log(quadrado.perimetro(5));
+
+var menu = {
+    width: 800,
+    height: 50,
+    backgroundColor: '#84E'
+}
+
+menu.backgroundColor = '#000';
+menu.color = 'blue';
