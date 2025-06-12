@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>addEventListener com arrow function e função anônima</h1>
+    <button id="btn-arrow">Clique Arrow</button>
+    <button id="btn-trad">Clique Tradicional</button>
+    <p id="saida"></p>
+
+    <script>
+        const botaoArrow = document.getElementById('btn-arrow');
+        const botaoTrad = document.getElementById('btn-trad');
+        const saida = document.getElementById('saida');
+
+        botaoArrow.addEventListener('click', () =>{
+            saida.textContent = 'Usando arrow function!';
+        });
+
+        botaoTrad.addEventListener('click', function(){
+            saida.textContent = 'Usando função anônima!';
+        })
+    </script>
+</body>
+</html>

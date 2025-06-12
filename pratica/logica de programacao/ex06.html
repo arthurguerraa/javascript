@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        6) Faça um programa que leia um número inteiro e mostre o seu antecessor e seu sucessor. 
+        Ex:  
+        Digite um número: 9 
+        O antecessor de 9 é 8 
+        O sucessor de 9 é 10 
+    -->
+    
+    <p>Digite um número:</p>
+    <input type="number" name="txtnumber" id="txtnumber">
+    <input type="button" value="Enviar" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var numero = document.getElementById('txtnumber')
+            var res = document.getElementById('res')
+            var n1 = Number(numero.value)
+
+            var ant = n1 - 1
+            var suc = n1 + 1
+
+            res.innerHTML = 'Antecessor de ' + n1 + ': ' + ant + '<br>Sucessor de ' + n1 + ': ' + suc 
+        }
+        
+    </script>
+</body>
+</html>

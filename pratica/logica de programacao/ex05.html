@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        5) Faça um programa que leia as duas notas de um aluno em uma matéria e mostre 
+        na tela a sua média na disciplina. 
+        Ex:  
+        Nota 1: 4.5 
+        Nota 2: 8.5 
+        A média entre 4.5 e 8.5 é igual a 6.5
+    -->
+    
+    <p>Digite sua primeira nota:</p>
+    <input type="number" name="txtnota1" id="txtnota1">
+    <p>Digite sua segunda nota:</p>
+    <input type="number" name="txtnota2" id="txtnota2">
+    <input type="button" value="Calcular Média" onclick="calcMedia()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcMedia(){
+            var nota1 = document.getElementById('txtnota1')
+            var nota2 = document.getElementById('txtnota2')
+            var res = document.getElementById('res')
+
+            n1 = Number(nota1.value)
+            n2 = Number(nota2.value)
+            var media = (n1 + n2) / 2
+
+            res.innerText = 'Sua média é de: ' + media
+        }
+        
+    </script>
+</body>
+</html>

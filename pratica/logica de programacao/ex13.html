@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        13) Faça um algoritmo que leia o salário de um funcionário, calcule e mostre o 
+        seu novo salário, com 15% de aumento.
+    -->
+
+    <p>Salário:</p>
+    <input type="number" name="txts" id="txts">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var s = document.getElementById('txts')
+            var res = document.getElementById('res')
+
+            var salario = Number(s.value)
+            var aumento = salario + (salario * (15/100))
+            res.innerHTML = `Salário antigo: R$${salario}<br>Salário com 15% de aumento: R$${aumento}`
+        }
+    </script>
+</body>
+</html>

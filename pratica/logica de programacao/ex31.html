@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        31) [DESAFIO] Crie um jogo de JoKenPo (Pedra-Papel-Tesoura)
+    -->
+
+    <input type="text" name="jogada" id="jogada" placeholder="Pedra-Papel-Tesoura">
+    <input type="button" value="Jogar" onclick="jogar()">
+    <div id="res"></div>
+
+    <script>
+        function sortear(min, max){
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            let sorteado = Math.floor(Math.random() * (max - min + 1)) + min;
+            return sorteado;
+        }
+
+        function jogar(){
+            let j = document.getElementById('jogada');
+            let res = document.getElementById('res');
+
+            let jogada = ['pedra', 'papel', 'tesoura'];
+
+            let numeroSorteado = sortear(0, 2);
+
+            if(j.value == jogada[numeroSorteado]){
+                res.innerHTML = `Sua jogada: ${j.value}<br>Jogada da máquina: ${jogada[numeroSorteado]}<br>Empate!`
+            }else if(j.value == 'pedra' && jogada[numeroSorteado] == 'tesoura'){
+                res.innerHTML = `Sua jogada: ${j.value}<br>Jogada da máquina: ${jogada[2]}<br>Vitória!`
+            }else if(j.value == 'pedra' && jogada[numeroSorteado] == 'papel'){
+                res.innerHTML = `Sua jogada: ${j.value}<br>Jogada da máquina: ${jogada[1]}<br>Derrota!`
+            }else if(j.value == 'papel' && jogada[numeroSorteado] == 'pedra'){
+                res.innerHTML = `Sua jogada: ${j.value}<br>Jogada da máquina: ${jogada[0]}<br>Vitória!`
+            }else if(j.value == 'papel' && jogada[numeroSorteado] == 'tesoura'){
+                res.innerHTML = `Sua jogada: ${j.value}<br>Jogada da máquina: ${jogada[2]}<br>Derrota!`
+            }else if(j.value == 'tesoura' && jogada[numeroSorteado] == 'papel'){
+                res.innerHTML = `Sua jogada: ${j.value}<br>Jogada da máquina: ${jogada[1]}<br>Vitória!`
+            }else if(j.value == 'tesoura' && jogada[numeroSorteado] == 'pedra'){
+                res.innerHTML = `Sua jogada: ${j.value}<br>Jogada da máquina: ${jogada[0]}<br>Derrota!`
+            }
+        }
+    </script>
+</body>
+</html>

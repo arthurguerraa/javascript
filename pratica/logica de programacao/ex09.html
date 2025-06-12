@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        9) Faça um algoritmo que leia quanto dinheiro uma pessoa tem na carteira (em R$) 
+        e mostre quantos dólares ela pode comprar. Considere US$1,00 = R$3,45. 
+    -->
+
+    <p>Digite o valor em R$</p>
+    <input type="number" name="txtnumber" id="txtnumber">
+    <input type="button" value="Converter" onclick="converter()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function converter(){
+            var numero = document.getElementById('txtnumber')
+            var res = document.getElementById('res')
+
+            var num = Number(numero.value)
+            var dolar = num * 3.45
+
+            res.innerText = `Você pode comprar ${dolar} dólares`
+        }
+    </script>
+</body>
+</html>

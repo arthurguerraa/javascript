@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Criar e adicionar um elemento ao DOM (createElement + appendChild)</h1>
+    <button id="btn-criar">Criar Parágrafo</button>
+    <div id="container"></div>
+
+    <script>
+        const botao = document.getElementById('btn-criar');
+        const container = document.getElementById('container');
+
+        botao.addEventListener('click', () =>{
+             // 1. Cria o elemento <p> em memória
+            const novoP = document.createElement('p');
+
+            // 2. Define o texto desse <p>
+            novoP.textContent = 'Parágrafo criado!';
+            
+            // 3. Adiciona (append) esse <p> dentro da <div id="container">
+            container.appendChild(novoP);
+        });
+    </script>
+</body>
+</html>

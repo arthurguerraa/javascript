@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .riscado{
+            text-decoration: line-through;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alternar classe com classList.toggle</h1>
+    <button id="btn-toggle">Marcar/Desmarcar</button>
+    <p id="texto">Clique no botão para marcar esse texto</p>
+
+    <script>
+        const botao = document.getElementById('btn-toggle');
+        const texto = document.getElementById('texto');
+
+        botao.addEventListener('click', () =>{
+            texto.classList.toggle('riscado');
+        });
+    </script>
+</body>
+</html>

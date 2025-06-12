@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        14) A locadora de carros precisa da sua ajuda para cobrar seus serviços. Escreva 
+        um programa que pergunte a quantidade de Km percorridos por um carro alugado e a 
+        quantidade de dias pelos quais ele foi alugado. Calcule o preço total a pagar, 
+        sabendo que o carro custa R$90 por dia e R$0,20 por Km rodado.
+    -->
+
+    <p>Km percorridos:</p>
+    <input type="number" name="txtkm" id="txtkm">
+    <p>Dias alugados:</p>
+    <input type="number" name="txtd" id="txtd">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var k = document.getElementById('txtkm')
+            var d = document.getElementById('txtd')
+            var res = document.getElementById('res')
+
+            var km = Number(k.value)
+            var dias = Number(d.value)
+
+            var valor_dia = 90
+            var valor_km = 0.20
+
+            var tot = (dias * valor_dia) + (km * valor_km)
+            res.innerHTML = `Dias alugados: ${dias}<br>Km rodados: ${km}<br>Total a pagar: R$${tot}`
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+
+        #seg1, #seg2, #seg3, #botao{
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        25) [DESAFIO] Crie um programa que leia o tamanho de três segmentos de reta. 
+        Analise seus comprimentos e diga se é possível formar um triângulo com essas 
+        retas. Matematicamente, para três segmentos formarem um triângulo, o comprimento 
+        de cada lado deve ser menor que a soma dos outros dois.
+    -->
+
+    <input type="number" name="seg1" id="seg1" placeholder="Segmento de reta 1">
+    <input type="number" name="seg2" id="seg2" placeholder="Segmento de reta 2">
+    <input type="number" name="seg3" id="seg3" placeholder="Segmento de reta 3">
+    <input type="button" value="Calcular" id="botao" onclick="calcular()">
+    <div id="res"></div>
+
+    <script>
+        function calcular(){
+            let r1 = document.getElementById('seg1');
+        let r2 = document.getElementById('seg2');
+        let r3 = document.getElementById('seg3');
+        let res = document.getElementById('res')
+
+        let reta1 = Number(r1.value);
+        let reta2 = Number(r2.value);
+        let reta3 = Number(r3.value);
+
+        if(reta1 < (reta2 + reta3) && reta2 < (reta1 + reta3) && reta3 < (reta1 + reta2)){
+            res.innerHTML = 'Forma triângulo!'
+        }else{
+            res.innerHTML = 'Não forma triângulo!'
+        }
+        }
+    </script>
+</body>
+</html>

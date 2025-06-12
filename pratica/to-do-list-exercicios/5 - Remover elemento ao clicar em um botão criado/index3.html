@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Criar e adicionar um elemento ao DOM (createElement + appendChild)</h1>
+    <button id="btn-criar">Criar Parágrafo</button>
+    <div id="container"></div>
+
+    <script>
+        const botao = document.getElementById('btn-criar');
+        const container = document.getElementById('container');
+
+        botao.addEventListener('click', () =>{
+            const novoP = document.createElement('p');
+            novoP.textContent = 'Parágrafo criado!';
+            container.appendChild(novoP);
+
+            const novoB = document.createElement('button');
+            novoB.textContent = 'Remover';
+            container.appendChild(novoB);
+
+            novoB.addEventListener('click', () =>{
+                novoP.remove();
+                novoB.remove();
+            })
+        });
+    </script>
+</body>
+</html>

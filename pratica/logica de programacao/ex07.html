@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        7) Crie um algoritmo que leia um número real e mostre na tela o seu dobro e a 
+        sua terça parte. 
+        Ex:  
+        Digite um número: 3.5 
+        O dobro de 3.5 é 7.0 
+        A terça parte de 3.5 é 1.16666
+    -->
+
+    <p>Digite um número:</p>
+    <input type="number" name="txtnumber" id="txtnumber">
+    <input type="button" value="Enviar" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var numero = document.getElementById('txtnumber')
+            var res = document.getElementById('res')
+
+            var n1 = Number(numero.value)
+            var dobro = n1 * 2
+            var terca = n1 / 3
+
+            res.innerHTML = 'Dobro de ' + n1 + ': ' + dobro + '<br>Terça parte de ' + n1 + ': ' + terca
+        }
+    </script>
+</body>
+</html>

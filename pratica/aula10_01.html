@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18pt;
+            color: white;
+        }
+
+        div{
+            margin: auto;
+            height: 300px;
+            width: 300px;
+            background-color: green;
+            text-align: center;
+            line-height: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="area">
+        Interaja...
+    </div>
+
+    <div id="area2">
+        <p id="paragrafo">Interaja...</p>
+    </div>
+
+    <script>
+        var a = document.getElementById('area')
+        var b = document.getElementById('area2')
+        var p = document.getElementById('paragrafo')
+
+        a.addEventListener('click', clicar)
+        a.addEventListener('mouseenter', entrar)
+        a.addEventListener('mouseout', sair)
+
+        b.addEventListener('mousemove', mover)
+        b.addEventListener('mouseleave', saiu)
+
+        function clicar(){
+            a.innerText = 'Clicou!'
+            a.style.background = 'red'
+        }
+
+        function entrar(){
+            a.innerText = 'Entrou!'
+             a.style.background = 'green'
+        }
+
+        function sair(){
+            a.innerText = 'Saiu!'
+             a.style.background = 'green'
+        }
+
+        function mover(){
+            b.innerText = 'Moveu!'
+            b.style.background = 'lime'
+        }
+
+        function saiu(){
+            b.innerText = 'Saiu!'
+            b.style.background = 'green'
+        }
+    </script>
+</body>
+</html>

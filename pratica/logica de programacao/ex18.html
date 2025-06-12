@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        18) Faça um programa que leia o ano de nascimento de uma pessoa, calcule a idade 
+        dela e depois mostre se ela pode ou não votar.
+    -->
+
+    <p>Digite sua idade:</p>
+    <input type="number" name="txtn" id="txtn">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var n = document.getElementById('txtn')
+            var res = document.getElementById('res')
+
+            var idade = Number(n.value)
+
+            if(idade < 16){
+                res.innerHTML = `${idade} anos, não pode votar`
+            }else if(idade < 18 && idade >= 16){
+                res.innerHTML = `${idade} anos, voto opcional`
+            }else{
+                res.innerHTML = `${idade} anos, voto obrigatório`
+            }
+        }
+    </script>
+</body>
+</html>

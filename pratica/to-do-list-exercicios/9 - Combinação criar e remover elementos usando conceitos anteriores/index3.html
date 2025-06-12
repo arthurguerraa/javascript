@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #333;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+        .feito {
+            background-color: #e0ffe0;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <h1>Combinação: criar e remover elementos usando conceitos anteriores</h1>
+    <button id="btn-criar">Criar Item</button>
+    <div id="lista"></div>
+
+    <script>
+        const botao = document.getElementById('btn-criar');
+        const lista = document.getElementById('lista');
+        let contador = 1;
+
+        botao.addEventListener('click', () =>{
+            const div = document.createElement('div');
+            div.classList.add('item');
+
+            const textoSpan = document.createElement('span');
+            textoSpan.textContent = `Item ${contador}`;
+
+            const btnConcluir = document.createElement('button');
+            btnConcluir.textContent = 'Concluir';
+            
+            btnConcluir.addEventListener('click', () =>{
+                textoSpan.classList.toggle('feito');
+            });
+
+            btnConcluir.addEventListener('click', () =>{
+                textoSpan.classList.remove();
+            });
+
+            div.addEventListener('dblclick', () =>{
+                div.remove();
+            });
+
+            div.appendChild(textoSpan);
+            div.appendChild(btnConcluir);
+            lista.appendChild(div);
+
+            contador++
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        19) Crie um algoritmo que leia o nome e as duas notas de um aluno, calcule a sua 
+        média e mostre na tela. No final, analise a média e mostre se o aluno teve ou 
+        não um bom aproveitamento (se ficou acima da média 7.0).
+    -->
+
+    <p>Nome</p>
+    <input type="text" name="txtn" id="txtn">
+    <p>Primeira nota</p>
+    <input type="number" name="txtn1" id="txtn1">
+    <p>Segunda nota</p>
+    <input type="number" name="txtn2" id="txtn2">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var n = document.getElementById('txtn')
+            var n1 = document.getElementById('txtn1')
+            var n2 = document.getElementById('txtn2')
+            var res = document.getElementById('res')
+
+            var nota1 = Number(n1.value)
+            var nota2 = Number(n2.value)
+
+            var media = (nota1 + nota2) / 2
+
+            if(media < 7){
+                res.innerHTML = `Aluno: ${n.value}<br>Média: ${media} (Abaixo da média)`
+            }else{
+                res.innerHTML = `Aluno: ${n.value}<br>Média: ${media} (Acima da média)`
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Digite seu nome:</p>
+    <input type="text" name="txtnome" id="txtnome">
+    <p>Digite seu salário:</p>
+    <input type="number" name="txtsalario" id="txtsalario">
+    <input type="button" value="Enviar" onclick="mostrar()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function mostrar(){
+            var nome = document.getElementById('txtnome')
+            var salario = document.getElementById('txtsalario')
+            var res = document.getElementById('res')
+
+            res.innerHTML = 'Nome do Funcionário: ' + nome.value + '<br>Salário: ' + salario.value 
+        }
+        
+    </script>
+</body>
+</html>

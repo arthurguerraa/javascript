@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        35) Uma empresa de aluguel de carros precisa cobrar pelos seus serviços. O 
+        aluguel de um carro custa R$90 por dia para carro popular e R$150 por dia para 
+        carro de luxo. Além disso, o cliente paga por Km percorrido. Faça um programa 
+        que leia o tipo de carro alugado (popular ou luxo), quantos dias de aluguel e 
+        quantos Km foram percorridos. No final mostre o preço a ser pago de acordo com a 
+        tabela a seguir: 
+        - Carros populares (aluguel de R$90 por dia) 
+            - Até 100Km percorridos: R$0,20 por Km 
+            - Acima de 100Km percorridos: R$0,10 por Km 
+        - Carros de luxo (aluguel de R$150 por dia) 
+            - Até 200Km percorridos: R$0,30 por Km 
+            - Acima de 200Km percorridos: R$0,25 por Km
+    -->
+
+    <input type="text" name="carro" id="carro" placeholder="Tipo de carro">
+    <input type="number" name="dias" id="dias" placeholder="Dias alugados">
+    <input type="number" name="km" id="km" placeholder="Km percorridos">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <div id="res"></div>
+
+    <script>
+        function calcular(){
+            let carro = document.getElementById('carro').value.trim().toLowerCase();
+            let d = document.getElementById('dias');
+            let k = document.getElementById('km');
+            let res = document.getElementById('res');
+
+            let dias = Number(d.value);
+            let km = Number(k.value);
+
+            let pop_dia = 90;
+            let pop_ate100 = 0.20;
+            let pop_mais100 = 0.10;
+
+            let luxo_dia = 150;
+            let luxo_ate200 = 0.30;
+            let luxo_mais200 = 0.25;
+
+            let tot_dia = 0;
+            let tot_km = 0;
+            let tot = 0;
+
+            if(carro === 'popular'){
+                tot_dia = dias * pop_dia;
+                if(km <= 100){
+                    tot_km = km * pop_ate100;
+                }else{
+                    tot_km = km * pop_mais100;
+                }
+            }else if(carro === 'luxo'){
+                tot_dia = dias * luxo_dia;
+                if(km <= 200){
+                    tot_km = km * luxo_ate200;
+                }else{
+                    tot_km = km * luxo_mais200;
+                }
+            }
+
+            tot = tot_dia + tot_km;
+
+            res.innerHTML = `Tipo de carro: ${carro}<br>Dias alugados: ${dias}<br>Km percorridos: ${km}<br>Total a pagar: ${tot}`
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        8) Desenvolva um programa que leia uma distância em metros e mostre os valores 
+        relativos em outras medidas. 
+        Ex:  
+        Digite uma distância em metros: 185.72 
+        A distância de 85.7m corresponde a: 
+        0.18572Km  1857.2dm 
+        1.8572Hm   18572.0cm 
+        18.572Dam  185720.0mm    
+    -->
+
+    <p>Digite a distância em metros</p>
+    <input type="number" name="txtmetros" id="txtmetros">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var dist = document.getElementById('txtmetros')
+            var res = document.getElementById('res')
+
+            var metros = Number(dist.value)
+
+            var km = metros / 1000
+            var hm = metros / 100
+            var dam = metros / 10
+            var dm = metros * 10
+            var cm = metros * 100
+            var mm = metros * 1000
+
+            res.innerHTML = `${metros} metros em Km ${km}<br>${metros} metros em Hm ${hm}<br>${metros} metros em Dam ${dam}<br>${metros} metros em dm ${dm}<br>${metros} metros em cm ${cm}<br>${metros} metros em mm ${mm}`
+        }
+    </script>
+</body>
+</html>

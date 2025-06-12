@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        33) Escreva um programa para aprovar ou não o empréstimo bancário para a compra 
+        de uma casa. O programa vai perguntar o valor da casa, o salário do comprador e 
+        em quantos anos ele vai pagar. Calcule o valor da prestação mensal, sabendo que 
+        ela não pode exceder 30% do salário ou então o empréstimo será negado.
+    -->
+
+    <input type="number" name="valorc" id="valorc" placeholder="Valor da casa">
+    <input type="number" name="valors" id="valors" placeholder="Valor do salário">
+    <input type="number" name="anos" id="anos" placeholder="Anos para pagar">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <div id="res"></div>
+
+    <script>
+        function calcular(){
+            let c = document.getElementById('valorc');
+            let s = document.getElementById('valors');
+            let a = document.getElementById('anos');
+            let res = document.getElementById('res');
+
+            let valorcasa = Number(c.value);
+            let salario = Number(s.value);
+            let anos = Number(a.value);
+            let prestacao = valorcasa / (anos * 12);
+            let porc = (salario / 100) * 30;  
+
+            if(prestacao > porc){
+                res.innerHTML = 'Empréstimo negado'
+            }else{
+                res.innerHTML = 'Empréstimo aprovado'
+            }
+        }
+    </script>
+</body>
+</html>

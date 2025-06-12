@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        11) Desenvolva uma lógica que leia os valores de A, B e C de uma equação do 
+        segundo grau e mostre o valor de Delta.
+    -->
+        <p>Valor de A:</p>
+        <input type="number" name="txtna" id="txtna">
+        <p>Valor de B:</p>
+        <input type="number" name="txtnb" id="txtnb">
+        <p>Valor de C:</p>
+        <input type="number" name="txtnc" id="txtnc">
+        <input type="button" value="Calcular" onclick="calcular()">
+        <p id="res">Resultado</p>
+
+        <script>
+            function calcular(){
+                var n1 = document.getElementById('txtna')
+                var n2 = document.getElementById('txtnb')
+                var n3 = document.getElementById('txtnc')
+                var res = document.getElementById('res')
+
+                var a = Number(n1.value)
+                var b = Number(n2.value)
+                var c = Number(n3.value)
+
+                var delta = (b ** 2) - 4 * a * c
+                res.innerHTML = `O valor de Δ (delta) é ${delta}`
+            }
+        </script>
+</body>
+</html>

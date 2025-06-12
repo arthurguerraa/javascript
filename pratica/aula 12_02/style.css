@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 600px;
+    background-color: aliceblue;
+    padding: 50px;
+}
+
+.container > h1{
+    text-align: center;
+}
+
+.campo{
+    display: flex;
+    justify-content: center;
+}
+
+#ano{
+    margin-top: 10px;
+    width: 150px;
+    height: 20px;
+}
+
+.opcoes{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+input[name="radcas"]{
+    margin-left: 20px;
+}
+
+#botao{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 100px;
+}

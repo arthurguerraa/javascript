@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        29) Desenvolva um programa que leia o nome de um funcionário, seu salário, 
+        quantos anos ele trabalha na empresa e mostre seu novo salário, reajustado de 
+        acordo com a tabela a seguir: 
+        - Até 3 anos de empresa: aumento de 3% 
+        - entre 3 e 10 anos: aumento de 12.5% 
+        - 10 anos ou mais: aumento de 20% 
+    -->
+
+    <input type="text" name="nome" id="nome" placeholder="Nome">
+    <input type="number" name="salario" id="salario" placeholder="Salário">
+    <input type="number" name="anos" id="anos" placeholder="Anos na empresa">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <div id="res"></div>
+
+    <script>
+        function calcular(){
+            let n = document.getElementById('nome');
+            let s = document.getElementById('salario');
+            let a = document.getElementById('anos');
+            let res = document.getElementById('res');
+
+            let salario = Number(s.value);
+            let anos = Number(a.value);
+            let aumento;
+            let porc = 0;
+
+            if(anos < 3){
+                porc = 3;
+            }else if(anos >= 3 && anos < 10){
+                porc = 12.5;
+            }else{
+                porc = 20;
+            }
+            
+            aumento = salario + ((salario * porc) / 100);
+
+            res.innerHTML = `Nome: ${nome.value}<br>Salário antigo: ${salario}<br>Anos de empresa: ${anos}<br>Novo salário: ${aumento}`
+        }
+    </script>
+</body>
+</html>

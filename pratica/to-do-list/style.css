@@ -1,0 +1,53 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 500px;
+    margin: 40px auto; /* top e bottom / left e rigit */
+    padding: 0 20px; /* top e bottom / left e rigit */
+}
+
+h1{
+    text-align: center;
+}
+
+#nova-tarefa{
+    width: calc(100% - 100px); /* pegue 100% da largura do elemento pai e subtraia 100px */
+    padding: 8px;
+    font-size: 16px;
+}
+
+#btn-adicionar{
+    width: 80px;
+    padding: 8px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+ul#lista-tarefas{
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+ul#lista-tarefas li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px; /* top e bottom / left e rigit */
+    margin-bottom: 8px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+}
+
+ul#lista-tarefas li.completed span{ /* tarefa após ser completada */
+    text-decoration: line-through;
+    color: #888;
+}
+
+button.btn-remover{
+    background: transparent;
+    border: none;
+    color: #E74C3C;
+    font-weight: bold;
+    cursor: pointer;
+}

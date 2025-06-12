@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        22) Escreva um programa que leia o ano de nascimento de um rapaz e mostre a sua 
+        situação em relação ao alistamento militar. - Se estiver antes dos 18 anos, mostre em quantos anos faltam para o 
+        alistamento. - Se já tiver depois dos 18 anos, mostre quantos anos já se passaram do 
+        alistamento.
+    -->
+
+    <p>Ano de nascimento</p>
+    <input type="number" name="txtn" id="txtn">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var a = document.getElementById('txtn')
+            var res = document.getElementById('res')
+
+            var ano = Number(a.value)
+            var anoAtual = new Date().getFullYear();
+            var idade = anoAtual - ano
+
+            if(idade == 18){
+                res.innerHTML = `Você vai se alistar esse ano`
+            }else if(idade > 18){
+                res.innerHTML = 'Você se alistou há ' + (idade - 18) + ' anos'
+            }else{
+                res.innerHTML = 'Você vai se alistar daqui a ' + (18 - idade) + ' anos'
+            }
+        }
+    </script>
+</body>
+</html>

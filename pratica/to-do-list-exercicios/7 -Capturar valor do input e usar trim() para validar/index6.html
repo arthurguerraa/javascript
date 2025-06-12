@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Capturar valor do input e usar trim() para validar</h1>
+    <input type="text" id="campo" placeholder="Digite algo…" />
+    <button id="btn-verificar">Verificar</button>
+    <p id="resposta"></p>
+
+    <script>
+        const campo = document.getElementById('campo');
+        const botao = document.getElementById('btn-verificar');
+        const resposta = document.getElementById('resposta');
+
+        botao.addEventListener('click', function(){
+            const texto = campo.value.trim();
+            resposta.textContent = texto;
+        });
+    </script>
+</body>
+</html>

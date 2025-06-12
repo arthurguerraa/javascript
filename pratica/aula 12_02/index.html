@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Descubra sua casa em Hogwarts</h1>
+        <div class="campo">
+            <input type="number" name="ano" id="ano" placeholder="Ano de nascimento">
+        </div>
+        <div class="opcoes">
+            <input type="radio" name="radcas" id="cor" checked>
+            <label for="cor">Coragem</label>
+            <input type="radio" name="radcas" id="int">
+            <label for="int">Inteligência</label>
+            <input type="radio" name="radcas" id="lea">
+            <label for="lea">Lealdade</label>
+            <input type="radio" name="radcas" id="amb">
+            <label for="amb">Ambição</label>
+        </div>
+        <input type="button" value="Descobrir" id="botao" onclick="descobrir()">
+        <div id="res"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

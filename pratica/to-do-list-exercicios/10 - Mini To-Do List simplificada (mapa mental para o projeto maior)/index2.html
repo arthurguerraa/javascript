@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul#lista {
+        list-style: none;
+        padding: 0;
+        }
+
+        ul#lista li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 8px;
+            margin-bottom: 6px;
+        }
+
+        ul#lista li.completo span {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        button.btn-remove {
+            background: transparent;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mini To-Do List</h2>
+    <input type="text" id="campo-tarefa" placeholder="Digite a tarefa…" />
+    <button id="btn-add">Adicionar</button>
+    <ul id="lista"></ul>
+
+    <script>
+        const campo = document.getElementById('campo-tarefa');
+        const btnAdd = document.getElementById('btn-add');
+        const ul = document.getElementById('lista');
+
+        function adicionarTarefa(){
+            const texto = campo.value.trim();
+            if(texto === '') return;
+
+            const lista = document.createElement('li');
+            const textoLista = document.createElement('span');
+            const btnRemover = document.createElement('button');
+
+            textoLista.textContent = texto;
+            btnRemover.textContent = 'X';
+            btnRemover.classList.add('btn-remove');
+
+            lista.addEventListener('click', () =>{
+                lista.classList.toggle('completo');
+            });
+
+            btnRemover.addEventListener('click', (e) =>{
+                e.stopImmediatePropagation();
+                lista.remove();
+            });
+
+            lista.appendChild(textoLista);
+            lista.appendChild(btnRemover);
+            ul.appendChild(lista);
+
+            campo.value = '';
+            campo.focus();
+        }
+
+        btnAdd.addEventListener('click', adicionarTarefa);
+
+        campo.addEventListener('keydown', (e) =>{
+            if(e.key === 'Enter') adicionarTarefa();
+        });
+    </script>
+</body>
+</html>

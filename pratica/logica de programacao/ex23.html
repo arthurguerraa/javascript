@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        23) Numa promoção exclusiva para o Dia da Mulher, uma loja quer dar descontos 
+        para todos, mas especialmente para mulheres. Faça um programa que leia nome, 
+        sexo e o valor das compras do cliente e calcule o preço com desconto. Sabendo 
+        que: - Homens ganham 5% de desconto - Mulheres ganham 13% de desconto
+    -->
+
+    <p>Nome</p>
+    <input type="text" name="txtn" id="txtn">
+    <p>Sexo</p>
+    <input type="radio" name="sexo" id="masc" value="M">
+    <label for="masc">Masculino</label>
+    <input type="radio" name="sexo" id="fem" value="F">
+    <label for="fem">Feminino</label>
+    <p>Valor das compras</p>
+    <input type="number" name="txtcomp" id="txtcomp">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var n = document.getElementById('txtn')
+            var sm = document.getElementById('masc')
+            var sf = document.getElementById('fem')
+            var vc = document.getElementById('txtcomp')
+            var res = document.getElementById('res')
+
+            var valorcompra = Number(vc.value)
+
+            if(sm.checked){
+                var desconto = (valorcompra * 5) / 100
+                var valorfinal = valorcompra - desconto  
+                sexo = 'Masculino'
+            }else if(sf.checked){
+                var desconto = (valorcompra * 13) / 100
+                var valorfinal = valorcompra - desconto
+                sexo = 'Feminino'
+            }
+
+             res.innerHTML = `Nome: ${n.value}<br>Sexo: ${sexo}<br>Valor da compra: R$${valorcompra.toFixed(2)}<br>Valor com desconto: R$${valorfinal.toFixed(2)}`
+        }
+    </script>
+</body>
+</html>

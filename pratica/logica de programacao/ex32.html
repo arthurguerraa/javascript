@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        32) [DESAFIO] Crie um jogo onde o computador vai sortear um número entre 1 e 5 o 
+        jogador vai tentar descobrir qual foi o valor sorteado. 
+    -->
+
+    <input type="number" name="numero" id="numero" placeholder="Número sorteado">
+    <input type="button" value="Adivinhar" onclick="adivinhar()">
+    <div id="res"></div>
+
+    <script>
+        function sortear(min, max){
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            let sorteado = Math.floor(Math.random() * (max - min + 1)) + min;
+            return sorteado;
+        }
+
+        function adivinhar(){
+            let n = document.getElementById('numero');
+            let res = document.getElementById('res');
+
+            let numero = Number(n.value);
+            let numeroSorteado = sortear(1, 5);
+
+            if(numero == numeroSorteado){
+                res.innerHTML = `Seu palpite: ${numero}<br>Número sorteado: ${numeroSorteado}<br>Acertou!`
+            }else{
+                res.innerHTML = `Seu palpite: ${numero}<br>Número sorteado: ${numeroSorteado}<br>Errou!`
+            }
+        }
+    </script>
+</body>
+</html>

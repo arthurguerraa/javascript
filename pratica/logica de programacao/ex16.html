@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        16) [DESAFIO] Escreva um programa para calcular a redução do tempo de vida de um 
+        fumante. Pergunte a quantidade de cigarros fumados por dias e quantos anos ele 
+        já fumou. Considere que um fumante perde 10 min de vida a cada cigarro. Calcule 
+        quantos dias de vida um fumante perderá e exiba o total em dias.
+    -->
+
+    <p>Cigarros fumados por dia:</p>
+    <input type="number" name="txtc" id="txtc">
+    <p>Anos sendo fumante:</p>
+    <input type="number" name="txtanos" id="txtanos">
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="res">Resultado</p>
+
+    <script>
+        function calcular(){
+            var c = document.getElementById('txtc')
+            var a = document.getElementById('txtanos')
+            var res = document.getElementById('res')
+
+            var cig = Number(c.value)
+            var anos = Number(a.value)
+
+            var tot_anos = anos * 365 // tot_anos: converte a quantidade de anos para dias (anos × 365)
+            var cig_dias = cig * tot_anos // cig_dias: calcula o total de cigarros fumados em todos esses dias (cigarros por dia × total de dias)
+            var cig_tot = cig_dias * 10 // cig_tot: calcula o total de minutos de vida perdidos (cada cigarro perde 10 minutos)
+            var cig_hora = cig_tot / 60 // cig_hora: converte os minutos perdidos em horas (dividindo por 60)
+            var cig_dia = cig_hora / 24 // cig_dia: converte as horas perdidas em dias (dividindo por 24)
+            
+            res.innerHTML = `Total de dias perdidos: ${cig_dia}`
+        }
+    </script>
+</body>
+</html>

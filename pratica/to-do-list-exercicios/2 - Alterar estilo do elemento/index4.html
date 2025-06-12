@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Alterar estilo do elemento</h1>
+    <p id="mensagem">Texto original</p>
+    <button id="btn-cor">Mudar Cor</button>
+
+    <script>
+        const mensagem = document.getElementById('mensagem');
+        const botao = document.getElementById('btn-cor');
+
+        botao.addEventListener('click', function(){
+            mensagem.textContent = 'Texto com cor alterada';
+            mensagem.style.color = 'green';
+        })
+    </script>
+</body>
+</html>
