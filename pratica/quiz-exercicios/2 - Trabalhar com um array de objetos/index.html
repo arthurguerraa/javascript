@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Selecionar elementos no DOM</h1>
+    <div id="quiz-container">
+    <p id="pergunta">?</p>
+    <div id="opcoes"></div>
+    <button id="btn-proxima">Próxima</button>
+    </div>
+
+    <script>
+        const quizContainer = document.getElementById('quiz-container');
+        const pergunta = document.getElementById('pergunta');
+        const opcoes = document.getElementById('opcoes');
+        const btnProxima = document.getElementById('btn-proxima');
+
+        const perguntas = [
+            {
+                texto: 'Qual a capital do Brasil?',
+                opcoes: ['São Paulo', 'Brasilia', 'Rio de Janeiro', 'Salvador'],
+                correta: 1
+            },
+            {
+                texto: 'Em que ano o JavaScript foi lançado?',
+                opcoes: ['1995', '2000', '1990', '1985'],
+                correta: 0
+            }
+        ]
+    </script>
+</body>
+</html>
