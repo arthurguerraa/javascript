@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            height: 100%;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .resultado{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="resultado">
+        <p id="res" class="resultado">0</p>
+    </div>
+    <div class="container">
+        <button id="btn-decrementa">Decrementar</button>
+        <button id="btn-incrementa">Incrementar</button>
+        <button id="btn-resetar">Resetar</button>
+    </div>
+
+    <script>
+        const btnDecrementa = document.getElementById('btn-decrementa');
+        const btnIncrementa = document.getElementById('btn-incrementa');
+        const btnReseta = document.getElementById('btn-resetar'); 
+        const res = document.getElementById('res');
+        let contador = 0;
+
+        btnDecrementa.addEventListener('click', () =>{
+            contador -= 1;
+            res.innerHTML = contador;
+        });
+
+        btnIncrementa.addEventListener('click', () =>{
+            contador += 1;
+            res.innerHTML = contador;
+        });
+
+        btnReseta.addEventListener('click', () =>{
+            contador = 0;
+            res.innerHTML = contador;
+        });
+    </script>
+</body>
+</html>
