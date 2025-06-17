@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .body{
+        body{
             margin: 0px;
             padding: 0px;
             box-sizing: border-box;
@@ -20,6 +20,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 140px;
+        }
+        .btn{
+            margin-left: 20px;
+            height: 100px;
+            width: 200px;
+            font-size: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -28,9 +38,9 @@
         <p id="res" class="resultado">0</p>
     </div>
     <div class="container">
-        <button id="btn-decrementa">Decrementar</button>
-        <button id="btn-incrementa">Incrementar</button>
-        <button id="btn-resetar">Resetar</button>
+        <button id="btn-decrementa" class="btn">Decrementar</button>
+        <button id="btn-incrementa" class="btn">Incrementar</button>
+        <button id="btn-resetar" class="btn">Resetar</button>
     </div>
 
     <script>
@@ -43,16 +53,31 @@
         btnDecrementa.addEventListener('click', () =>{
             contador -= 1;
             res.innerHTML = contador;
+            if(contador > 0){
+                res.style.color = 'green';
+            }else if(contador < 0){
+                res.style.color = 'red';
+            }else{
+                res.style.color = 'grey';
+            }
         });
 
         btnIncrementa.addEventListener('click', () =>{
             contador += 1;
             res.innerHTML = contador;
+            if(contador > 0){
+                res.style.color = 'green';
+            }else if(contador < 0){
+                res.style.color = 'red';
+            }else{
+                res.style.color = 'grey';
+            }
         });
 
         btnReseta.addEventListener('click', () =>{
             contador = 0;
             res.innerHTML = contador;
+            res.style.color = 'grey';
         });
     </script>
 </body>
