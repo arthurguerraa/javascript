@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Loop forEach em array</h1>
+    <h2>Estruturas de dados: array de objetos</h2>
+   
+    <script>
+        const quiz = [
+            {
+                texto: '1+1=?',
+                opcoes: ['1', '2', '3'],
+                correta: 1
+            }
+        ];
+
+        quiz.forEach((item, i) => {
+            console.log("índice: " + i + " Pergunta: " + item.texto);
+        });
+    </script>
+</body>
+</html>
