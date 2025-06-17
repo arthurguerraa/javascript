@@ -6,13 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Capturar elementos do DOM</h1>
+    <h1>Manipular texto com textContent</h1>
     <div id="container"></div>
     <button id="btn-test">Clique</button>
 
     <script>
         const container = document.getElementById('container');
         const btnTest = document.getElementById('btn-test');
+
+        btnTest.addEventListener('click', () =>{
+            container.textContent = 'Funcionou!';
+        })
     </script>
 </body>
 </html>
