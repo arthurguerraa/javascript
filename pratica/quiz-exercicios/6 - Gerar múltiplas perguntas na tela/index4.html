@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="area"></div>
+
+     <script>
+        const area = document.getElementById('area');
+        const quiz = [
+            {
+                texto: '1+1=?',
+                opcoes: ['1', '2', '3'],
+                correta: 1
+            },
+            {
+                texto: '2+2=?',
+                opcoes: ['1', '2', '4'],
+                correta: 2
+            },
+            {
+                texto: '4+4=?',
+                opcoes: ['8', '2', '3'],
+                correta: 0
+            }
+        ];
+
+        quiz.forEach((item, index) =>{
+            const p = document.createElement('p');
+            p.textContent = `${index+1}. ${item.texto}`;
+            area.appendChild(p);
+        });
+    </script>
+</body>
+</html>
