@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="area"></div>
+
+    <script>
+        const area = document.getElementById('area');
+        const quiz = [
+            {
+                texto: '1+1=?',
+                opcoes: ['1', '2', '3'],
+                correta: 1
+            }
+        ];
+
+        const label = document.createElement('label');
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'q0';
+        radio.value = 1;
+        label.appendChild(radio);
+        label.append(' ' + quiz[0].opcoes[1]);
+        area.appendChild(label);
+
+    </script>
+</body>
+</html>
