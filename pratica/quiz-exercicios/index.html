@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz em JavaScript</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    h1 { text-align: center; }
+    .pergunta { margin-bottom: 20px; }
+    .opcao { display: block; margin-bottom: 8px; }
+    #btn-verificar { display: block; margin: 20px auto; padding: 10px 20px; }
+    #resultado { margin-top: 20px; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Quiz de JavaScript</h1>
+
+  <!-- Container para as perguntas geradas em JS -->
+  <div id="quiz-container">
+    <!-- Perguntas serão injetadas aqui -->
+  </div>
+
+  <button id="btn-verificar">Verificar respostas</button>
+  <p id="resultado"></p>
+
+  <script>
+    // 1) Defina aqui um array de objetos 'perguntas'
+    const perguntas = [
+      { texto: 'Qual a capital do Brasil?',           opcoes: ['São Paulo', 'Brasília', 'Rio de Janeiro', 'Salvador'], correta: 1 },
+      { texto: 'Quanto é 2 + 2?',                      opcoes: ['3', '4', '5', '22'],                   correta: 1 },
+      { texto: 'Qual comando exibe algo no console?',  opcoes: ['print()', 'console.log()', 'echo()', 'log()'], correta: 1 }
+    ];
+
+    // 2) Função para renderizar todas as perguntas dentro de #quiz-container
+    function renderizarQuiz() {
+      const container = document.getElementById('quiz-container');
+      container.innerHTML = ''; // limpa antes de renderizar
+
+      perguntas.forEach((item, idx) => {
+        // Cria o bloco da pergunta
+        const divPergunta = document.createElement('div');
+        divPergunta.classList.add('pergunta');
+
+        // Texto da pergunta
+        const p = document.createElement('p');
+        p.textContent = `${idx + 1}. ${item.texto}`;
+        divPergunta.appendChild(p);
+
+        // Cria cada opção como input radio + label
+        item.opcoes.forEach((opTexto, i) => {
+          const label = document.createElement('label');
+          label.classList.add('opcao');
+
+          const radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = `q${idx}`;
+          radio.value = i; // índice da opção
+          label.appendChild(radio);
+
+          const textoLabel = document.createTextNode(' ' + opTexto);
+          label.appendChild(textoLabel);
+
+          divPergunta.appendChild(label);
+        });
+
+        container.appendChild(divPergunta);
+      });
+    }
+
+    // Chama para exibir as perguntas
+    renderizarQuiz();
+
+    // 3) Listener no #btn-verificar para processar respostas
+    const botaoVerificar = document.getElementById('btn-verificar');
+    const resultadoEl    = document.getElementById('resultado');
+
+    botaoVerificar.addEventListener('click', () => {
+      // Seleciona todos os rádios marcados
+      const respostas = document.querySelectorAll('#quiz-container input[type="radio"]:checked');
+      let pontos = 0;
+
+      // Compara cada resposta com o índice correto
+      respostas.forEach((res, idxPergunta) => {
+        const valorSelecionado = Number(res.value);
+        const objPergunta = perguntas[idxPergunta];
+        if (valorSelecionado === objPergunta.correta) {
+          pontos++;
+        }
+      });
+
+      // Exibe resultado
+      resultadoEl.textContent = `Você acertou ${pontos} de ${perguntas.length} perguntas.`;
+    });
+  </script>
+</body>
+</html>
