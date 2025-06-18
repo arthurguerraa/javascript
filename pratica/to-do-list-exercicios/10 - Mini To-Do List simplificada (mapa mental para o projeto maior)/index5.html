@@ -38,12 +38,18 @@
     <h2>Mini To-Do List</h2>
     <input type="text" id="campo-tarefa" placeholder="Digite a tarefa…" />
     <button id="btn-add">Adicionar</button>
+    <p id="contador"></p>
     <ul id="lista"></ul>
 
     <script>
         const campo = document.getElementById('campo-tarefa');
         const btnAdd = document.getElementById('btn-add');
         const lista = document.getElementById('lista');
+        const contador = document.getElementById('contador');
+
+        function atualizarContador(){
+            contador.textContent = `Tarefas: ${lista.children.length}`;
+        }
 
         function adicionarTarefa(){
             const texto = campo.value.trim();
@@ -64,6 +70,7 @@
 
             btnRemove.addEventListener('click', () =>{
                 li.remove();
+                atualizarContador();
             });
 
             li.appendChild(span);
@@ -72,6 +79,8 @@
 
             campo.value = '';
             campo.focus();
+
+            atualizarContador();  // <— atualiza após adição
         }
 
         btnAdd.addEventListener('click', adicionarTarefa);
@@ -81,6 +90,9 @@
                 adicionarTarefa();
             }
         });
+
+        // Inicializa contador
+        atualizarContador();
     </script>
 </body>
 </html>
