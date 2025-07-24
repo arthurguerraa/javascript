@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reajuste Salarial</title>
+</head>
+<body>
+    <h2>Reajuste Salarial</h2>
+
+    <label for="genero">Gênero:</label>
+    <select id="genero">
+        <option value="f">Feminino</option>
+        <option value="m">Masculino</option>
+    </select>
+
+    <p>Tempo de empresa (em anos):</p>
+    <input type="number" id="tempo">
+
+    <p>Salário atual (R$):</p>
+    <input type="number" id="salario">
+
+    <button id="botao">Calcular</button>
+
+    <p id="res"></p>
+
+    <script>
+        const genero = document.getElementById('genero');
+        const tempo = document.getElementById('tempo');
+        const salarioInput = document.getElementById('salario');
+        const botao = document.getElementById('botao');
+        const res = document.getElementById('res');
+
+        botao.addEventListener('click', calcular);
+
+        function calcular() {
+            const generoSelecionado = genero.value;
+            const anos = Number(tempo.value);
+            let salario = Number(salarioInput.value);
+            let percentual = 0;
+
+            if (generoSelecionado === 'f') {
+                if (anos < 15) {
+                    percentual = 5;
+                } else if (anos <= 20) {
+                    percentual = 12;
+                } else {
+                    percentual = 23;
+                }
+            } else {
+                if (anos < 20) {
+                    percentual = 3;
+                } else if (anos <= 30) {
+                    percentual = 13;
+                } else {
+                    percentual = 25;
+                }
+            }
+
+            const aumento = salario * (percentual / 100);
+            const novoSalario = salario + aumento;
+
+            res.innerHTML = `Seu novo salário é R$ ${novoSalario.toFixed(2).replace('.', ',')}`;
+        }
+    </script>
+</body>
+</html>
