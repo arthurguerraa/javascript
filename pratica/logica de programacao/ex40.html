@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="botao">Calcular</button>
+    <p id="res">0</p>
+
+    <script>
+        const botao = document.getElementById('botao');
+        const res = document.getElementById('res');
+        let numero = Number(res.innerHTML);
+
+        botao.addEventListener('click', contar);
+
+        function contar(){
+            res.innerHTML = '';
+            for(let i = numero; i <= 18; i = i + 3){
+                res.innerHTML += i + " ";
+            }
+            res.innerHTML += "Acabou!"; 
+        }
+    </script>
+</body>
+</html>

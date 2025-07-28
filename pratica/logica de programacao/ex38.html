@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="botao">Contar</button>
+    <p id="res">6</p>
+
+    <script>
+        const botao = document.getElementById('botao');
+        const res = document.getElementById('res');
+        
+        let numero = Number(res.innerHTML); // pode ser textContent também
+
+        botao.addEventListener('click', contar); //função sem parenteses pra não ser ativada automaticamente
+
+        function contar(){
+            res.innerHTML = '';
+            for(let i = numero; i <= 11; i ++){
+            res.innerHTML += i + " ";
+        }
+         res.innerHTML += 'Acabou!';
+    }
+    </script>
+</body>
+</html>
