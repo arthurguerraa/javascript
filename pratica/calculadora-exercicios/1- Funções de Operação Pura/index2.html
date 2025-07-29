@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Funções de Operação Pura</h1>
+    <p>Objetivo: Criar quatro funções em JavaScript que recebam dois números e retornem o resultado de soma, subtração, multiplicação e divisão.</p>
+    <input type="number" name="n1" id="n1">
+    <input type="number" name="n2" id="n2">
+    <button id="botao">Calcular</button>
+    <p id="res"></p>
+
+    <script>
+        const n1 = document.getElementById('n1');
+        const n2 = document.getElementById('n2');
+        const botao = document.getElementById('botao');
+        const res = document.getElementById('res');
+
+        function soma(a, b){
+            return a + b;
+        }
+
+        function subtracao(a, b){
+            return a - b;
+        }
+
+        function multiplicacao(a, b){
+            return a * b;
+        }
+
+        function divisao(a, b){
+            return a / b;
+        }
+
+        botao.addEventListener('click', () =>{
+            res.innerHTML = '';
+
+            const x = Number(n1.value);
+            const y = Number(n2.value);
+
+            res.innerHTML += `Soma: ${soma(x, y)}<br>`;
+            res.innerHTML += `Subtração: ${subtracao(x, y)}<br>`;
+            res.innerHTML += `Multiplicação: ${multiplicacao(x, y)}<br>`;
+            res.innerHTML += `Divisão: ${divisao(x, y)}<br>`;
+        });
+    </script>
+</body>
+</html>
