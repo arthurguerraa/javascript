@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+     <h1>Tratamento de Erros e Limpeza</h1>
+    <p>
+        Objetivo:
+        Verificar se os campos não estão vazios antes de calcular.<br>
+        Tratar “divisão por zero” exibindo mensagem de erro em vez de Infinity.<br>
+        Adicionar um botão “Limpar” que zere inputs e resultado.
+    </p>
+    <input type="number" name="n1" id="n1">
+    <select id="minhasOpcoes">
+    <option value="">-- Por favor, selecione --</option>
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+    </select>
+    <input type="number" name="n2" id="n2">
+    <button id="botao">Calcular</button>
+    <button id="limpar">Limpar</button>
+    <p id="res"></p>
+
+    <script>
+        const n1 = document.getElementById('n1');
+        const n2 = document.getElementById('n2');
+        const botao = document.getElementById('botao');
+        const limpar = document.getElementById('limpar');
+        const res = document.getElementById('res');
+        const select = document.getElementById('minhasOpcoes');
+
+        function soma(a, b){
+            return a + b;
+        }
+
+        function subtracao(a, b){
+            return a - b;
+        }
+
+        function multiplicacao(a, b){
+            return a * b;
+        }
+
+        function divisao(a, b){
+            return a / b;
+        }
+
+        botao.addEventListener('click', () =>{
+            const op = document.getElementById('minhasOpcoes').value;
+            const x = Number(n1.value);
+            const y = Number(n2.value);
+
+            if(n1.value === '' || n2.value === '' || op === ''){
+                alert('Preencha todos os cmapos e escolha uma operação');
+                return;
+            }
+
+            if(op === '/' && y === 0){
+                alert('Não é possível dividir por 0');
+                return;
+            }
+
+            if(op === '+'){
+                res.innerHTML = `${soma(x,y)}`;
+            }else if(op === '-'){
+                res.innerHTML = `${subtracao(x,y)}`;
+            }else if(op === '*'){
+                res.innerHTML = `${multiplicacao(x,y)}`;
+            }else if(op === '/'){
+                res.innerHTML = `${divisao(x,y)}`;
+            }
+        });
+
+        limpar.addEventListener('click', () =>{
+            n1.value = '';
+            n2.value = '';
+            select.value = '';
+            res.innerText = '';
+        });
+    </script>
+</body>
+</html>
