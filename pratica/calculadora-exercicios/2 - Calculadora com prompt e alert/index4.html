@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora com prompt e alert</h1>
+    <p>Objetivo: Pegar dois valores numéricos usando prompt(), pedir o tipo de operação (ex.: “+”, “-” etc.) e, via alert(), mostrar o resultado.</p>
+
+    <script>
+        function soma(a, b){
+            return a + b;
+        }
+
+        function subtracao(a, b){
+            return a + b;
+        }
+
+        function multiplicacao(a, b){
+            return a * b;
+        }
+
+        function divisao(a, b){
+            return a / b;  
+        }
+
+        const n1 = prompt('Primeiro número: ');
+        const op = prompt('Operação: ["+","-","*","/"]');
+        const n2 = prompt('Segundo número: ');
+
+        const x = Number(n1);
+        const y = Number(n2);
+
+        if(op === '+'){
+            alert(`Soma: ${soma(x, y)}`);
+        }else if(op === '-'){
+            alert(`Subtração: ${subtracao(x, y)}`);
+        }else if(op === '*'){
+            alert(`Multiplicação: ${multiplicacao(x, y)}`);
+        }else if(op === '/'){
+            alert(`Divisão: ${divisao(x, y)}`);
+        }
+    </script>
+</body>
+</html>
