@@ -44,21 +44,29 @@
   <p id="res"></p>
 
   <script>
-    const n1     = document.getElementById('n1');
-    const n2     = document.getElementById('n2');
+    const n1 = document.getElementById('n1');
+    const n2 = document.getElementById('n2');
     const select = document.getElementById('minhasOpcoes');
-    const botao  = document.getElementById('botao');
+    const botao = document.getElementById('botao');
     const limpar = document.getElementById('limpar');
-    const res    = document.getElementById('res');
+    const res = document.getElementById('res');
 
-    function soma(a, b)         { return a + b; }
-    function subtracao(a, b)   { return a - b; }
-    function multiplicacao(a, b){ return a * b; }
-    function divisao(a, b)     { return a / b; }
+    function soma(a, b){ 
+        return a + b; 
+    }
+    function subtracao(a, b){ 
+        return a - b; 
+    }
+    function multiplicacao(a, b){ 
+        return a * b; 
+    }
+    function divisao(a, b){ 
+        return a / b; 
+    }
 
     botao.addEventListener('click', () => {
-      const x  = Number(n1.value);
-      const y  = Number(n2.value);
+      const x = Number(n1.value);
+      const y = Number(n2.value);
       const op = select.value;
 
       // Validações básicas
