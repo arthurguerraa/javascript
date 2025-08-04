@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora com Estilo Dinâmico</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    /* Classes para colorir o resultado */
+    .positivo {
+      color: green;
+    }
+    .negativo {
+      color: red;
+    }
+    .zero {
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tratamento de Erros, Limpeza e Estilo Dinâmico</h1>
+  <p>
+    Objetivo:<br>
+    - Verificar se os campos não estão vazios antes de calcular.<br>
+    - Tratar “divisão por zero” exibindo mensagem de erro em vez de Infinity.<br>
+    - Adicionar um botão “Limpar” que zere inputs e resultado.<br>
+    - **Estilizar o resultado**: negativo em vermelho, zero em cinza, positivo em verde.
+  </p>
+
+  <input type="number" id="n1" placeholder="Número 1">
+  <select id="minhasOpcoes">
+    <option value="">-- Selecione --</option>
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" id="n2" placeholder="Número 2">
+  <button id="botao">Calcular</button>
+  <button id="limpar">Limpar</button>
+  <p id="res"></p>
+
+  <script>
+    const n1     = document.getElementById('n1');
+    const n2     = document.getElementById('n2');
+    const select = document.getElementById('minhasOpcoes');
+    const botao  = document.getElementById('botao');
+    const limpar = document.getElementById('limpar');
+    const res    = document.getElementById('res');
+
+    function soma(a, b)         { return a + b; }
+    function subtracao(a, b)   { return a - b; }
+    function multiplicacao(a, b){ return a * b; }
+    function divisao(a, b)     { return a / b; }
+
+    botao.addEventListener('click', () => {
+      const x  = Number(n1.value);
+      const y  = Number(n2.value);
+      const op = select.value;
+
+      // Validações básicas
+      if (n1.value === '' || n2.value === '' || op === '') {
+        alert('Por favor, preencha todos os campos e escolha uma operação.');
+        return;
+      }
+      if (op === '/' && y === 0) {
+        alert('Não é possível dividir por 0.');
+        return;
+      }
+
+      // Cálculo
+      let resultado;
+      if (op === '+') {
+        resultado = soma(x, y);
+      } else if (op === '-') {
+        resultado = subtracao(x, y);
+      } else if (op === '*') {
+        resultado = multiplicacao(x, y);
+      } else if (op === '/') {
+        resultado = divisao(x, y);
+      }
+
+      // Exibir e estilizar
+      res.textContent = resultado;
+      res.classList.remove('positivo', 'negativo', 'zero');
+      if (resultado > 0) {
+        res.classList.add('positivo');
+      } else if (resultado < 0) {
+        res.classList.add('negativo');
+      } else {
+        res.classList.add('zero');
+      }
+    });
+
+    limpar.addEventListener('click', () => {
+      n1.value = '';
+      n2.value = '';
+      select.value = '';
+      res.textContent = '';
+      res.classList.remove('positivo', 'negativo', 'zero');
+    });
+  </script>
+</body>
+</html>
