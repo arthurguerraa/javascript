@@ -82,7 +82,7 @@ console.log(semRetorno()); // undefined
 //Exemplo:
 
 // função normal
-const soma = function(a, b) {
+const soma3 = function(a, b) {
   return a + b;
 };
 
