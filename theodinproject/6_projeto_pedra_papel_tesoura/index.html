@@ -6,6 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <script>
+        function getComputerChoice(){
+            let min = 0
+            let max = 2;
+            let numeroNoIntervalo = Math.floor(Math.random()* (max - min + 1));
+
+            switch (numeroNoIntervalo){
+                case 0:
+                    return console.log('pedra');
+                    break;
+                case 1:
+                    return console.log('papel');
+                    break;
+                case 2:
+                    return console.log('tesoura');
+                    break;       
+                default:
+                    return console.log('jogada inválida');
+            }
+        }
+    </script>
 </body>
 </html>
