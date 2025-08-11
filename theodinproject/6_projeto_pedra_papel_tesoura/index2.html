@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            let min = 0;
+            let max = 2;
+            let numeroNoIntervalo = Math.floor(Math.random() * (max - min + 1) + min) // não pode ser const pq a variável é iniciamente um número mais depois é ocnvertido pra uma string
+
+            switch(numeroNoIntervalo){
+                case 0:
+                    return numeroNoIntervalo = "pedra";
+                    break;
+                case 1:
+                    return numeroNoIntervalo = "papel";
+                    break;
+                case 2:
+                    return numeroNoIntervalo = "tesoura";
+                    break;
+                default:
+                    return "Escolha inválida";            
+            }
+        }
+
+        function getHumanChoice(){
+            const escolha = prompt("Digite sua jogada:")
+            return escolha.toLowerCase();
+        }
+
+        function playRound(getComputerChoice, getHumanChoice){
+            if(getComputerChoice === getHumanChoice){
+                return "Empate!";
+            }else if((getComputerChoice === "pedra" && getHumanChoice === "tesoura") ||
+                (getComputerChoice === "papel" && getHumanChoice === "pedra") ||
+                (getComputerChoice === "tesoura" && getHumanChoice === "papel")
+            ){
+                return "Computador venceu!";
+            }else{
+                return "Você venceu!";
+            }
+        }
+
+        function playGame(){
+            let humanScore = 0;
+            let computerScore = 0;
+
+            for(let i = 1; i <= 5; i++){
+                const computerSelection = getComputerChoice(); // declarar a variável de escolha dentro do for para que ela mude toda rodada
+                const humanSelection = getHumanChoice();
+
+                const resultado = playRound(computerSelection, humanSelection);
+                if(resultado === "Computador venceu!"){
+                    computerScore++;
+                }else if(resultado === "Você venceu!"){
+                    humanScore++;
+                }
+
+                console.log(`Rodada ${i}: ${resultado}`);
+                console.log(`Placar: Você ${humanScore} x ${computerScore} Computador\n`);
+            }
+            if(humanScore > computerScore){
+                console.log("Parabéns! Você ganhou o jogo!");
+            }else if(computerScore > humanScore){
+                console.log("O computador ganhou o jogo!");
+            }else{
+                console.log("O jogo terminou empatado!");
+            }
+        }
+
+        playGame();
+    </script>
+</body>
+</html>

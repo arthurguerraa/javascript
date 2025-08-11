@@ -11,6 +11,7 @@
             let min = 0
             let max = 2;
             let numeroNoIntervalo = Math.floor(Math.random()* (max - min + 1)); // Math floor arredonda o número gerado pelo Math Random pra baixo para ser um número inteiro
+            // numeroNoIntervalo não pode ser const pq a variável é iniciamente um número mais depois é ocnvertido pra uma string
 
             switch (numeroNoIntervalo){
                 case 0:
@@ -64,7 +65,6 @@
 
                     console.log(`Rodada ${i}: ${resultado}`);
                     console.log(`Placar: Você ${humanScore} x ${computerScore} Computador\n`);
-
                 }
 
                 if(humanScore > computerScore){
