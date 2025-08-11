@@ -14,13 +14,13 @@
 
             switch (numeroNoIntervalo){
                 case 0:
-                    return console.log("pedra");
+                    return numeroNoIntervalo = "pedra";
                     break;
                 case 1:
-                    return console.log("papel");
+                    return numeroNoIntervalo = "papel";
                     break;
                 case 2:
-                    return console.log("tesoura");
+                    return numeroNoIntervalo = "tesoura";
                     break;       
                 default:
                     return console.log("jogada inválida");
@@ -29,43 +29,44 @@
 
         function getHumanChoice(){
             const escolha = prompt("Escolha sua jogada");
-            console.log(escolha);
         }    
+
+        const computerSelection = getComputerChoice();
+        const humanSelection = getHumanChoice();
 
         function playGame(){
             let humanScore = 0;
             let computerScore = 0;
             for(let i = 0; i <= 5; i++){
                 function playRound(computerSelection, humanSelection){
-            humanSelection.toLowerCase();
-            if(computerSelection === humanSelection){
-                console.log(`Empate! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);
-            }else if(computerSelection === "pedra" && humanSelection === "tesoura"){
-                computerScore++;
-                console.log(`Derrota! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);               
-            }else if(computerSelection === "papel" && humanSelection === "pedra"){
-                computerScore++;
-                console.log(`Derrota! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);            
-            }else if(computerSelection === "tesoura" && humanSelection === "papel"){
-                computerScore++;
-                console.log(`Derrota! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);                
-            }else if(humanSelection === "pedra" && computerSelection === "tesoura"){
-                humanScore++;
-                console.log(`Vitória! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);         
-            }else if(humanSelection === "papel" && computerSelection === "pedra"){
-                humanScore++;
-                console.log(`Vitória! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);  
-            }else if(humanSelection === "tesoura" && computerSelection === "papel"){
-                humanScore++
-                console.log(`Vitória! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`); 
+                humanSelection.toLowerCase();
+                if(computerSelection === humanSelection){
+                    console.log(`Empate! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);
+                }else if(computerSelection === "pedra" && humanSelection === "tesoura"){
+                    computerScore++;
+                    console.log(`Derrota! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);               
+                }else if(computerSelection === "papel" && humanSelection === "pedra"){
+                    computerScore++;
+                    console.log(`Derrota! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);            
+                }else if(computerSelection === "tesoura" && humanSelection === "papel"){
+                    computerScore++;
+                    console.log(`Derrota! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);                
+                }else if(humanSelection === "pedra" && computerSelection === "tesoura"){
+                    humanScore++;
+                    console.log(`Vitória! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);         
+                }else if(humanSelection === "papel" && computerSelection === "pedra"){
+                    humanScore++;
+                    console.log(`Vitória! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`);  
+                }else if(humanSelection === "tesoura" && computerSelection === "papel"){
+                    humanScore++
+                    console.log(`Vitória! Computador: ${computerSelection} x Você: ${humanSelection}\nPlacar: Computador: ${computerScore} x Você: ${humanScore}`); 
+                }
             }
-        }
+                }
             }
-        }
 
         
-        const computerSelection = getComputerChoice();
-        const humanSelection = getHumanChoice();
+        
         
     </script>
 </body>
