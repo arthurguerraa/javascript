@@ -35,14 +35,14 @@ generateUserGreeting("John");
 // Variáveis do mesmo tipo devem seguir um sistema de nomenclatura consistente.
 
 // consistente
-function getPlayerScore();
-function getPlayerName();
-function getPlayerTag();
+function getPlayerScore(){};
+function getPlayerName(){};
+function getPlayerTag(){};
 
 // inconsistente
-function getUserScore();
-function fetchPlayerName();
-function retrievePlayer1Tag();
+function getUserScore(){};
+function fetchPlayerName(){};
+function retrievePlayer1Tag(){};
 
 // Nomes pesquisáveis e compreensíveis
 // Evite valores “mágicos” no código, como números ou strings diretos.
