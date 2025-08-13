@@ -12,12 +12,19 @@ function sumOfTripledEvens(array) {
   }
   return sum;
 }
-const vetor = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-console.log(sumOfTripledEvens(vetor));
 
-
-function somaDosParesTriplicados(vet){
-
+//Mesma solução usando .filter, .map e .reduce
+function sumOfTripledEvens1(array) {
+  return array
+    .filter((num) => num % 2 === 0)
+    .map((num) => num * 3)
+    .reduce((acc, curr) => acc + curr);
 }
+
+console.log(sumOfTripledEvens(vetor));
+console.log(sumOfTripledEvens1(vetor));
+
+const vetor = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 
 
