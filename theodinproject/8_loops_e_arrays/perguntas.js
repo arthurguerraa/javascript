@@ -99,5 +99,19 @@ join(separator) // — transforma em string.
 // Obs.: map, filter, reduce são poderosos e muito usados em código funcional.
 
 
+/* 8) Qual é a vantagem de escrever testes automatizados?
+Testes automáticos (TDD ou só testes) ajudam a:
+- Detectar bugs cedo — você sabe quando algo quebrou.
+- Permitir refatoração segura — muda o código com confiança porque os testes garantem que nada quebrou.
+- Documentar comportamento — o teste mostra como a função deve se comportar.
+- Economizar tempo — evita testes manuais repetidos.
+
+Exemplo simples usando console.assert (teste rápido): */
+
+function soma(a, b) { return a + b; }
+console.assert(soma(2,2) === 4, "soma(2,2) deve ser 4");
+
+// — se a condição falhar, o console mostra a mensagem de erro.
+
 
 
