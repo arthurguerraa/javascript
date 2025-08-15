@@ -2,7 +2,12 @@ const res = document.querySelector("#res");
 const btnPedra = document.querySelector("#pedra");
 const btnPapel = document.querySelector("#papel");
 const btnTesoura = document.querySelector("#tesoura");
+const btnJogar = document.querySelector("#jogar");
 
+let humanSelection = "";
+let humanScore = 0;
+let computerScore = 0;
+let rodada = 1;
 
 function getComputerChoice(){
             let min = 0
@@ -25,10 +30,6 @@ function getComputerChoice(){
             }
         }
 
-        function getHumanChoice(humanChoice){
-            return humanChoice;
-        }  
-        
         function playRound(computerSelection, humanSelection){
             if(computerSelection === humanSelection){
                 return "Empate!";
@@ -43,39 +44,41 @@ function getComputerChoice(){
             }
         }
 
-        function playGame(){
-
-            btnPedra.addEventListener('click', () => {
-                getHumanChoice("pedra");
+         btnPedra.addEventListener('click', () => {
+                humanSelection = "pedra";
             });
             btnPapel.addEventListener('click', () =>{
-                getHumanChoice("papel");
+                humanSelection = "papel";
             });
             btnTesoura.addEventListener('click', () => {
-                getHumanChoice("tesoura");
+                humanSelection = "tesoura";
             });
 
-            let humanScore = 0;
-            let computerScore = 0;
-            let i = 1;
-                    const computerSelection = getComputerChoice();
-                    const humanSelection = getHumanChoice();
+        btnJogar.addEventListener('click', () => {
+            if(humanSelection === ""){
+                res.innerHTML = "Escolha pedra, papel ou tesoura antes de jogar!";
+                return;
+            }
+            const computerSelection = getComputerChoice();
 
-                    const resultado = playRound(computerSelection, humanSelection);
+            const resultado = playRound(computerSelection, humanSelection);
 
-                    if(resultado === "Você venceu!"){
-                        humanScore++
-                    }else if(resultado === "Computador venceu!"){
-                        computerScore++
-                    }
+            if(resultado === "Você venceu!"){
+                humanScore++
+            }else if(resultado === "Computador venceu!"){
+                computerScore++
+            }
 
-                    console.log(`Rodada ${i}: ${resultado}`);
-                    console.log(`Placar: Você ${humanScore} x ${computerScore} Computador\n`);
-                    i++;
+            res.innerHTML = `Rodada ${rodada}: ${resultado} (Você: ${humanSelection} | Computador: ${computerSelection})<br>`;
+            res.innerHTML = `Placar: Você ${humanScore} x ${computerScore} Computador<br><br>`;
+            rodada++;
 
                 if(humanScore === 5){
-                    res.innerHTML = "Parabéns! Você ganhou o jogo!";
+                    res.innerHTML += "Parabéns! Você ganhou o jogo!";
+                    btnJogar.disabled = true;
                 }else if(computerScore === 5){
-                    res.innerHTML = "O computador ganhou o jogo!";
+                    res.innerHTML += "O computador ganhou o jogo!";
+                    btnJogar.disabled = true;
                 }
-            }
+        });
+        
