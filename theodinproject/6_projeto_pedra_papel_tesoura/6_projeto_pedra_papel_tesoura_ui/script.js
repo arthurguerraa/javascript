@@ -3,6 +3,7 @@ const btnPedra = document.querySelector("#pedra");
 const btnPapel = document.querySelector("#papel");
 const btnTesoura = document.querySelector("#tesoura");
 const btnJogar = document.querySelector("#jogar");
+const btnResetar = document.querySelector("#resetar");
 
 let humanSelection = "";
 let humanScore = 0;
@@ -69,8 +70,7 @@ function getComputerChoice(){
                 computerScore++
             }
 
-            res.innerHTML = `Rodada ${rodada}: ${resultado} (Você: ${humanSelection} | Computador: ${computerSelection})<br>`;
-            res.innerHTML = `Placar: Você ${humanScore} x ${computerScore} Computador<br><br>`;
+            res.innerHTML = `Rodada ${rodada}: ${resultado}<br>Placar: Você ${humanScore} x ${computerScore} Computador<br><br>`;
             rodada++;
 
                 if(humanScore === 5){
@@ -81,4 +81,15 @@ function getComputerChoice(){
                     btnJogar.disabled = true;
                 }
         });
+
+
+        btnResetar.addEventListener('click', () => {
+            res.innerHTML = "";
+            let humanSelection = "";
+            let humanScore = 0;
+            let computerScore = 0;
+            let rodada = 1;
+        })
+
+        
         
