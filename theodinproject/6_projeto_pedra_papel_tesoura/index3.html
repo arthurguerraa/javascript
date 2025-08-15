@@ -6,41 +6,78 @@
     <title>Document</title>
 </head>
 <body>
-  <h1>THE TITLE OF YOUR WEBPAGE</h1>
-  <div id="container">
-    <div class="content">This is the glorious text-content!</div>
-  </div>
+    <script>
+        function getComputerChoice(){
+            let min = 0
+            let max = 2;
+            let numeroNoIntervalo = Math.floor(Math.random()* (max - min + 1)); // Math floor arredonda o número gerado pelo Math Random pra baixo para ser um número inteiro
+            // numeroNoIntervalo não pode ser const pq a variável é iniciamente um número mais depois é ocnvertido pra uma string
 
-  <script>
-    const container = document.querySelector("#container");
+            switch (numeroNoIntervalo){
+                case 0:
+                    return numeroNoIntervalo = "pedra";
+                    break;
+                case 1:
+                    return numeroNoIntervalo = "papel";
+                    break;
+                case 2:
+                    return numeroNoIntervalo = "tesoura";
+                    break;       
+                default:
+                    return console.log("jogada inválida");
+            }
+        }
 
-    const p = document.createElement("p");
-    p.textContent = "Hey I'm red!";
-    p.style.color = "red";
+        function getHumanChoice(){
+            const escolha = prompt("Escolha sua jogada");
+            return escolha.toLowerCase();
+        }  
+        
+        function playRound(computerSelection, humanSelection){
+            if(computerSelection === humanSelection){
+                return "Empate!";
+            }else if(
+                (computerSelection === "pedra" && humanSelection === "tesoura") || 
+                (computerSelection === "papel" && humanSelection === "pedra") || 
+                (computerSelection === "tesoura" && humanSelection === "papel")
+            ){
+                return "Computador venceu!";
+            }else{
+                    return "Você venceu!";
+            }
+        }
 
-    const h3 = document.createElement("h3");
-    h3.textContent = "I'm a blue h3!";
-    h3.style.color = "blue";
+        function playGame(){
+            let humanScore = 0;
+            let computerScore = 0;
+            
+            for(let i = 1; i <= 5; i++){
+                    const computerSelection = getComputerChoice();
+                    const humanSelection = getHumanChoice();
 
-    
+                    const resultado = playRound(computerSelection, humanSelection);
 
-    const div = document.createElement("div");
-    div.style.border = "5px solid black";
-    div.style.backgroundColor = 'pink';
+                    if(resultado === "Você venceu!"){
+                        humanScore++
+                    }else if(resultado === "Computador venceu!"){
+                        computerScore++
+                    }
 
-    const h1 = document.createElement("h1");
-    h1.textContent = "I'm in a div!";
+                    console.log(`Rodada ${i}: ${resultado}`);
+                    console.log(`Placar: Você ${humanScore} x ${computerScore} Computador\n`);
+                }
 
-    const p2 = document.createElement("p");
-    p2.textContent = "ME TOO!";
+                if(humanScore > computerScore){
+                    console.log("Parabéns! Você ganhou o jogo!");
+                }else if(computerScore > humanScore){
+                    console.log("O computador ganhou o jogo!");
+                }else{
+                    console.log("O jogo terminou empatado!");
+                }
+            }
 
-    container.appendChild(p);
-    container.appendChild(h3);
-
-    div.appendChild(h1);
-    div.appendChild(p2);
-    container.appendChild(div);
-
-  </script>
+            playGame();
+        
+    </script>
 </body>
 </html>
