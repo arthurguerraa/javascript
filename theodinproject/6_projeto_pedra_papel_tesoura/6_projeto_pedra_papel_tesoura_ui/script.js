@@ -1,3 +1,8 @@
+const btnPedra = document.querySelector("#pedra");
+const btnPapel = document.querySelector("#papel");
+const btnTesoura = document.querySelector("#tesoura");
+const res = document.querySelector("#res");
+
 function getComputerChoice(){
             let min = 0
             let max = 2;
@@ -59,10 +64,10 @@ function getComputerChoice(){
                 }
 
                 if(humanScore > computerScore){
-                    console.log("Parabéns! Você ganhou o jogo!");
+                    res.innerHTML = "Parabéns! Você ganhou o jogo!";
                 }else if(computerScore > humanScore){
-                    console.log("O computador ganhou o jogo!");
+                    res.innerHTML = "O computador ganhou o jogo!";
                 }else{
-                    console.log("O jogo terminou empatado!");
+                    res.innerHTML = "O jogo terminou empatado!";
                 }
             }
