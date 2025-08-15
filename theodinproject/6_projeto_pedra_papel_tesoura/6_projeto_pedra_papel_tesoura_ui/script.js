@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script>
-        function getComputerChoice(){
+function getComputerChoice(){
             let min = 0
             let max = 2;
             let numeroNoIntervalo = Math.floor(Math.random()* (max - min + 1)); // Math floor arredonda o número gerado pelo Math Random pra baixo para ser um número inteiro
@@ -75,9 +66,3 @@
                     console.log("O jogo terminou empatado!");
                 }
             }
-
-            playGame();
-        
-    </script>
-</body>
-</html>
