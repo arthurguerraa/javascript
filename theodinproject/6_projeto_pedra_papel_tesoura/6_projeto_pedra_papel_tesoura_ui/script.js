@@ -1,7 +1,8 @@
+const res = document.querySelector("#res");
 const btnPedra = document.querySelector("#pedra");
 const btnPapel = document.querySelector("#papel");
 const btnTesoura = document.querySelector("#tesoura");
-const res = document.querySelector("#res");
+
 
 function getComputerChoice(){
             let min = 0
@@ -24,9 +25,8 @@ function getComputerChoice(){
             }
         }
 
-        function getHumanChoice(){
-            const escolha = prompt("Escolha sua jogada");
-            return escolha.toLowerCase();
+        function getHumanChoice(humanChoice){
+            return humanChoice;
         }  
         
         function playRound(computerSelection, humanSelection){
@@ -44,10 +44,20 @@ function getComputerChoice(){
         }
 
         function playGame(){
+
+            btnPedra.addEventListener('click', () => {
+                getHumanChoice("pedra");
+            });
+            btnPapel.addEventListener('click', () =>{
+                getHumanChoice("papel");
+            });
+            btnTesoura.addEventListener('click', () => {
+                getHumanChoice("tesoura");
+            });
+
             let humanScore = 0;
             let computerScore = 0;
-            
-            for(let i = 1; i <= 5; i++){
+            let i = 1;
                     const computerSelection = getComputerChoice();
                     const humanSelection = getHumanChoice();
 
@@ -61,13 +71,11 @@ function getComputerChoice(){
 
                     console.log(`Rodada ${i}: ${resultado}`);
                     console.log(`Placar: Você ${humanScore} x ${computerScore} Computador\n`);
-                }
+                    i++;
 
-                if(humanScore > computerScore){
+                if(humanScore === 5){
                     res.innerHTML = "Parabéns! Você ganhou o jogo!";
-                }else if(computerScore > humanScore){
+                }else if(computerScore === 5){
                     res.innerHTML = "O computador ganhou o jogo!";
-                }else{
-                    res.innerHTML = "O jogo terminou empatado!";
                 }
             }
