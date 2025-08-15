@@ -14,20 +14,18 @@ function getComputerChoice(){
             let min = 0
             let max = 2;
             let numeroNoIntervalo = Math.floor(Math.random()* (max - min + 1)); // Math floor arredonda o número gerado pelo Math Random pra baixo para ser um número inteiro
-            // numeroNoIntervalo não pode ser const pq a variável é iniciamente um número mais depois é ocnvertido pra uma string
+            // numeroNoIntervalo não pode ser const pq a variável é iniciamente um número mas depois é convertido pra uma string
 
+            // Como o código está retornando diretamente a string, não precisa reatribuir numeroNoIntervalo para cada escolha nem usar break:
             switch (numeroNoIntervalo){
                 case 0:
-                    return numeroNoIntervalo = "pedra";
-                    break;
+                    return "pedra";
                 case 1:
-                    return numeroNoIntervalo = "papel";
-                    break;
+                    return "papel";
                 case 2:
-                    return numeroNoIntervalo = "tesoura";
-                    break;       
+                    return "tesoura";   
                 default:
-                    return console.log("jogada inválida");
+                    return "jogada inválida";
             }
         }
 
@@ -70,8 +68,9 @@ function getComputerChoice(){
                 computerScore++
             }
 
-            res.innerHTML = `Rodada ${rodada}: ${resultado}<br>Placar: Você ${humanScore} x ${computerScore} Computador<br><br>`;
-            rodada++;
+            res.innerHTML = `Rodada ${rodada}: ${resultado}  
+            Você: ${humanSelection} | Computador: ${computerSelection}<br>  
+            Placar: Você ${humanScore} x ${computerScore} Computador<br><br>`;
 
                 if(humanScore === 5){
                     res.innerHTML += "Parabéns! Você ganhou o jogo!";
@@ -85,10 +84,11 @@ function getComputerChoice(){
 
         btnResetar.addEventListener('click', () => {
             res.innerHTML = "";
-            let humanSelection = "";
-            let humanScore = 0;
-            let computerScore = 0;
-            let rodada = 1;
+            btnJogar.disabled = false;
+            humanSelection = "";
+            humanScore = 0;
+            computerScore = 0;
+            rodada = 1;
         })
 
         
