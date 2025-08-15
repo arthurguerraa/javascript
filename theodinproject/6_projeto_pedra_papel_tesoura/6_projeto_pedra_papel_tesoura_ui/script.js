@@ -53,6 +53,18 @@ function getComputerChoice(){
                 humanSelection = "tesoura";
             });
 
+            const botoes = [btnPedra, btnPapel, btnTesoura];
+
+            botoes.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    // Remove a seleção de todos os botões
+                    botoes.forEach(b => b.classList.remove('selected'));
+
+                    // Adiciona a seleção apenas no botão clicado
+                    botao.classList.add('selected');
+                });
+            });
+
         btnJogar.addEventListener('click', () => {
             if(humanSelection === ""){
                 res.innerHTML = "Escolha pedra, papel ou tesoura antes de jogar!";
@@ -89,7 +101,9 @@ function getComputerChoice(){
             humanScore = 0;
             computerScore = 0;
             rodada = 1;
-        })
+            
+            botoes.forEach(b => b.classList.remove('selected'));
+        });
 
         
         
