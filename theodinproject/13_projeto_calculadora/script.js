@@ -1,5 +1,5 @@
 /* ----------------------
-  script.js - lógica da calculadora (tratamento dos gotchas)
+  script.js - lógica da calculadora (corrigido: aceita '−' e normaliza operadores)
 ------------------------*/
 
 // --- Funções matemáticas básicas ---
@@ -31,7 +31,6 @@ function calcular(n1, operador, n2) {
   }
 
   if ((operador === "/" || operador === "÷") && b === 0) {
-    // devolvemos um código especial para ser tratado na UI
     return "DIV_ZERO";
   }
 
@@ -39,6 +38,7 @@ function calcular(n1, operador, n2) {
     case "+":
       return soma(a, b);
     case "-":
+    case "−": // aceita também o sinal unicode
       return subtrair(a, b);
     case "×":
     case "*":
@@ -53,57 +53,43 @@ function calcular(n1, operador, n2) {
 
 // --- Estado da calculadora ---
 const calculadora = {
-  displayValue: "0",      // texto atual no display (string)
-  primeiroOperando: null, // número (ou null)
-  operador: null,         // operador atual (string) ou null
-  esperandoSegundo: false,// se true, o próximo dígito substitui o display
-  resultadoMostrado: false// se true, o display mostra um resultado recém-calculado
+  displayValue: "0",
+  primeiroOperando: null,
+  operador: null,
+  esperandoSegundo: false,
+  resultadoMostrado: false
 };
 
 // --- Seletores DOM ---
 const elementoDisplay = document.getElementById("display");
 const teclasEl = document.querySelector(".keys");
 
-// Atualiza o display na tela com displayValue
+// Atualiza o display
 function atualizarDisplay() {
   elementoDisplay.textContent = calculadora.displayValue;
 }
 
-/*
-  formataResultado:
-  - limita o comprimento máximo do texto do display (MAX_CHARS)
-  - reduz casas decimais dinamicamente para caber
-  - usa notação exponencial curta se o número inteiro for enorme
-*/
+// Formatar resultado para caber no display
 function formatarResultado(value) {
   if (value === null) return "Erro";
   if (value === "DIV_ZERO") return "Erro: divisão por 0 — boa tentativa 😉";
 
-  const MAX_CHARS = 12; // tamanho máximo razoável para o display
-
-  // garante que seja número
+  const MAX_CHARS = 12;
   const num = Number(value);
   if (!isFinite(num)) return "Erro";
 
-  // formato inicial com até 10 casas decimais
   let str = String(parseFloat(num.toFixed(10)));
-
-  // se já cabe, return
   if (str.length <= MAX_CHARS) return str;
 
-  // se houver parte inteira muito grande, usar exponencial com 6 dígitos significativos
   const intPart = Math.trunc(Math.abs(num)).toString();
   if (intPart.length >= MAX_CHARS) {
-    // notação exponencial com 6 dígitos significativos
     return num.toExponential(6);
   }
 
-  // caso haja parte decimal, reduzimos as casas para caber
-  const availableForDecimals = MAX_CHARS - intPart.length - (num < 0 ? 1 : 0) - 1; // -1 para o ponto
+  const availableForDecimals = MAX_CHARS - intPart.length - (num < 0 ? 1 : 0) - 1;
   const decimals = Math.max(0, availableForDecimals);
   str = String(parseFloat(num.toFixed(decimals)));
 
-  // se ainda não coube (improvável), usa exponencial
   if (str.length > MAX_CHARS) {
     return num.toExponential(6);
   }
@@ -111,25 +97,22 @@ function formatarResultado(value) {
   return str;
 }
 
-// Quando o usuário clica em um dígito
+// Inserir dígito
 function inserirDigito(digito) {
   if (calculadora.esperandoSegundo) {
-    // começando o segundo operando
     calculadora.displayValue = digito;
     calculadora.esperandoSegundo = false;
   } else if (calculadora.resultadoMostrado) {
-    // resultado foi mostrado; digitar um número inicia novo cálculo
     calculadora.displayValue = digito;
     calculadora.resultadoMostrado = false;
     calculadora.primeiroOperando = null;
     calculadora.operador = null;
   } else {
-    // anexar dígito (evita zeros à esquerda)
     calculadora.displayValue = calculadora.displayValue === "0" ? digito : calculadora.displayValue + digito;
   }
 }
 
-// Tratamento do ponto decimal
+// Inserir decimal
 function inserirDecimal() {
   if (calculadora.esperandoSegundo) {
     calculadora.displayValue = "0.";
@@ -141,7 +124,7 @@ function inserirDecimal() {
   }
 }
 
-// Limpa tudo (C)
+// Reset
 function resetarCalculadora() {
   calculadora.displayValue = "0";
   calculadora.primeiroOperando = null;
@@ -150,7 +133,7 @@ function resetarCalculadora() {
   calculadora.resultadoMostrado = false;
 }
 
-// Backspace: remove último caractere
+// Backspace
 function retroceder() {
   if (calculadora.resultadoMostrado) {
     resetarCalculadora();
@@ -163,26 +146,41 @@ function retroceder() {
   }
 }
 
-// Porcentagem: converte o valor atual em porcentagem (divide por 100)
+// Porcentagem
 function porcentagem() {
   const val = parseFloat(calculadora.displayValue);
   if (Number.isNaN(val)) return;
   calculadora.displayValue = String(val / 100);
 }
 
-// Quando o usuário clica num operador (+ - × ÷)
-function tratarOperador(proximoOperador) {
+// Normalizar operador (converte símbolos visuais para formas consistentes)
+// opcional mas ajuda evitar bugs com diferentes símbolos
+function normalizarOperador(op) {
+  if (!op) return op;
+  const mapa = {
+    "×": "*",
+    "÷": "/",
+    "−": "-"
+  };
+  return mapa[op] || op;
+}
+
+// Tratar operador (quando usuário clica em + - × ÷)
+function tratarOperador(proximoOperadorRaw) {
+  // normaliza para passar pra calcular quando necessário
+  const proximoOperador = proximoOperadorRaw; // guardamos o símbolo exibido para UI
+  const proximoOperadorNormalizado = normalizarOperador(proximoOperadorRaw);
+
   const valorAtual = calculadora.displayValue;
 
-  // Se não tivermos primeiro operando, setamos
   if (calculadora.primeiroOperando === null && !calculadora.esperandoSegundo) {
     calculadora.primeiroOperando = parseFloat(valorAtual);
   } else if (calculadora.operador && !calculadora.esperandoSegundo) {
-    // Há um operador definido e usuário já digitou o segundo operando: calcular primeiro
+    // usamos operador armazenado (pode ser simbólico '×','÷','−' ou ASCII); calcular aceita ambos
+    // para segurança, passamos a forma original (já aceita unicode no calcular)
     const resultado = calcular(calculadora.primeiroOperando, calculadora.operador, valorAtual);
 
     if (resultado === "DIV_ZERO") {
-      // mensagem sarcástica de erro: não trava a calculadora
       calculadora.displayValue = "Erro: divisão por 0 — boa tentativa 😉";
       calculadora.primeiroOperando = null;
       calculadora.operador = null;
@@ -208,22 +206,15 @@ function tratarOperador(proximoOperador) {
     calculadora.resultadoMostrado = true;
   }
 
-  // Se o usuário pressionou operadores consecutivos, apenas atualizamos o operador (não avaliamos)
-  calculadora.operador = proximoOperador;
-  calculadora.esperandoSegundo = true; // o próximo dígito começa o segundo operando
+  // Atualiza o operador que será exibido/armazenado (mantemos o símbolo do botão para UX)
+  calculadora.operador = proximoOperadorRaw;
+  calculadora.esperandoSegundo = true;
 }
 
-// Quando o usuário pressiona '='
+// Tratar '='
 function tratarIgual() {
-  if (calculadora.operador === null) {
-    // nada a fazer se não há operador
-    return;
-  }
-
-  if (calculadora.esperandoSegundo) {
-    // usuário apertou operador e em seguida '=' sem digitar segundo número: ignorar
-    return;
-  }
+  if (calculadora.operador === null) return;
+  if (calculadora.esperandoSegundo) return;
 
   const resultado = calcular(calculadora.primeiroOperando, calculadora.operador, calculadora.displayValue);
 
@@ -255,7 +246,7 @@ function tratarIgual() {
   calculadora.resultadoMostrado = true;
 }
 
-// --- Delegação de eventos para as teclas ---
+// Delegação de eventos
 teclasEl.addEventListener("click", (evento) => {
   const alvo = evento.target.closest("button");
   if (!alvo) return;
@@ -297,7 +288,6 @@ teclasEl.addEventListener("click", (evento) => {
     return;
   }
 
-  // caso seja dígito (0-9)
   const digito = alvo.textContent.trim();
   if (/^\d$/.test(digito)) {
     inserirDigito(digito);
@@ -306,23 +296,20 @@ teclasEl.addEventListener("click", (evento) => {
   }
 });
 
-// --- Suporte teclado físico ---
+// Suporte teclado físico (mantive como antes)
 document.addEventListener("keydown", (e) => {
-  // números
   if (e.key >= "0" && e.key <= "9") {
     inserirDigito(e.key);
     atualizarDisplay();
     return;
   }
 
-  // ponto decimal
   if (e.key === "." || e.key === ",") {
     inserirDecimal();
     atualizarDisplay();
     return;
   }
 
-  // operadores básicos
   if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
     const mapa = { "*": "×", "/": "÷" };
     const op = mapa[e.key] || e.key;
@@ -331,7 +318,6 @@ document.addEventListener("keydown", (e) => {
     return;
   }
 
-  // Enter / = para calcular
   if (e.key === "Enter" || e.key === "=") {
     e.preventDefault();
     tratarIgual();
@@ -339,14 +325,12 @@ document.addEventListener("keydown", (e) => {
     return;
   }
 
-  // Backspace
   if (e.key === "Backspace") {
     retroceder();
     atualizarDisplay();
     return;
   }
 
-  // Escape -> clear
   if (e.key === "Escape") {
     resetarCalculadora();
     atualizarDisplay();
@@ -354,5 +338,5 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Inicializa display na carga
+// Inicializa display
 atualizarDisplay();
