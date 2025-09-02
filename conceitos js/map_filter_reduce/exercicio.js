@@ -84,6 +84,7 @@ const numeros1Soma = numeros1.reduce((soma, n) =>{
 }, 0);
 console.log(numeros1Soma);
 
+
 // 2- Conte quantas vezes cada letra aparece no array.
 
 const letras = ["a", "b", "a", "c", "b", "a"];
@@ -95,7 +96,6 @@ const contagem = letras.reduce((acumulador, letra) => {
   return acumulador;
 }, {}); // acumulador inicial é um objeto vazio
 console.log(contagem); // { a: 3, b: 2, c: 1 }
-
 
 
 // 3- Calcule a média das idades de um array de objetos.
