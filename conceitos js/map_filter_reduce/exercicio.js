@@ -141,3 +141,14 @@ const mediaIdade = pessoas.reduce((acumulador, pessoa) => {
   return acumulador + pessoa.idade;
 }, 0) / pessoas.length; // soma total dividido pelo nº de pessoas
 console.log(mediaIdade); // 30
+
+
+// 4- Dado um array de números, calcule o maior valor usando reduce.
+const numeros5 = [10, 25, 8, 99, 37];
+// resultado esperado: 99
+
+const maiorNumero = numeros5.reduce((ac, n) =>{
+      if(n > ac) ac = n;
+      return ac;
+}, 0);
+console.log(maiorNumero);
