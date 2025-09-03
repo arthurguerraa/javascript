@@ -10,7 +10,7 @@ function somar2(a){
     return a + 2;
 }
 
-// Quando uma função só um parâmetro, o parâmetro não precisa dos parênteses
+// Quando uma função tem só um parâmetro, o parâmetro não precisa dos parênteses
 const somar2versao2 = a => a + 2;
 
 

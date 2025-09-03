@@ -29,8 +29,6 @@ console.log(camelize("a--b"));                // "aB"  (comportamento razoável 
 A função não deve modificar o array original. Deve retornar o novo array.
 
 Por exemplo: 
-
-
 alert(filtered); // 3,1 (valores que correspondem)
 alert(arr); // 5,3,8,1 (não modificado) */
 
@@ -45,3 +43,5 @@ function filterRange(arr, a, b){
 
 let filtered = filterRange(arr, 1, 4);
 console.log(filtered);
+
+
