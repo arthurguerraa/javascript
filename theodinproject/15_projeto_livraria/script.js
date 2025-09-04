@@ -1,7 +1,10 @@
+const biblioteca = [];
+
 function Livro(titulo, autor, paginas, genero, lido){
     if(!new.target){
         throw Error("Você deve usar o operador 'new' para chamar o construtor")
     }
+    this.id = crypto.randomUUID;
     this.titulo = titulo;
     this.autor = autor;
     this.paginas = paginas;
@@ -16,5 +19,11 @@ function Livro(titulo, autor, paginas, genero, lido){
         }
     }
 
-    
+    this.adicionaLivro = function(livro){
+        biblioteca.push(livro);
+    }
 }
+
+const livro1 = new Livro('A Metamorfose', 'Franz Kafka', 200, 'Ficção', false);
+livro1.adicionaLivro(livro1);
+console.log(biblioteca);
