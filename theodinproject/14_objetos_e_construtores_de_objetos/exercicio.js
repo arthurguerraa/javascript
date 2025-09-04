@@ -18,6 +18,7 @@ function Book(title, author, pages, read){
 
 const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
 console.log(book1.info());
+//nesse caso eu consegui trazer o método porém é uma cópia e não o mesmo método, consome mais memória
 
 // -----------------------------------------------------------------------------------------------------------
 
@@ -42,3 +43,4 @@ class Livro{
 
 const livro1 = new Livro("Harry Potter", "J.K. Rowling", 200, false);
 console.log(livro1.informacao());
+//nesse caso eu consegui trazer o método e é o mesmo da class prototipo Livro, consome menos memória
