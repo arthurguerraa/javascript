@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+#library {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  margin-top: 12px;
+}
+
+.book-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.controls {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+button {
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background: white;
+}
+
+dialog {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+form label {
+  display: block;
+  margin: 6px 0;
+}

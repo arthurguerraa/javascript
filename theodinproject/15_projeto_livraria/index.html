@@ -1,22 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livraria</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Biblioteca</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <form id="book-form">
-        <input type="text" id="title" placeholder="Título" required>
-        <input type="text" id="author" placeholder="Autor" required>
-        <input type="number" id="pages" placeholder="Páginas" required>
-        <label>
-            <input type="checkbox" id="read"> Lido
-        </label>
-        <button type="submit">Adicionar Livro</button>
+  <button id="newBookBtn">Novo Livro</button>
+
+  <main>
+    <section id="library"></section>
+  </main>
+
+  <dialog id="bookDialog">
+    <form id="bookForm">
+      <h3>Novo Livro</h3>
+      <label>
+        Título
+        <input name="title" required />
+      </label>
+      <label>
+        Autor
+        <input name="author" required />
+      </label>
+      <label>
+        Páginas
+        <input name="pages" type="number" min="1" required />
+      </label>
+      <label>
+        Lido?
+        <input name="read" type="checkbox" />
+      </label>
+      <menu>
+        <button type="submit">Adicionar</button>
+        <button type="button" id="cancelBtn">Cancelar</button>
+      </menu>
     </form>
+  </dialog>
 
-    <div id="books-container"></div>
-
+  <script src="script.js"></script>
 </body>
 </html>
