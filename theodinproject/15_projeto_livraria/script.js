@@ -1,103 +1,111 @@
-// Passo 2: constructor + prototype
-    function Book(title, author, pages, read = false) {
-      if (!new.target) throw Error("Use 'new' para criar um Book");
-      this.id = (crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
-      this.title = title;
-      this.author = author;
-      this.pages = Number(pages);
-      this.read = Boolean(read);
+function Livro(titulo, autor, paginas, lido = false) {
+      if (!new.target) {
+        throw Error("Você deve usar o operador 'new' para chamar o construtor");
+      }
+      this.identificador = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+      this.titulo = titulo;
+      this.autor = autor;
+      this.paginas = Number(paginas);
+      this.lido = Boolean(lido);
+
+      // (não colocamos o método info dentro do construtor — usaremos o prototype,
+      // mas para ficar igual ao exemplo original mostramos também como seria dentro:)
+      // this.info = function() { ... }  // escolha do curso: preferimos prototype abaixo
     }
 
-    Book.prototype.info = function() {
-      const readText = this.read ? "lido" : "não lido";
-      return `${this.title} de ${this.author}, ${this.pages} páginas, ${readText}`;
+    // método no prototype (economiza memória, disponível para todas as instâncias)
+    Livro.prototype.info = function() {
+      const textoLido = this.lido ? "lido" : "não lido";
+      return `${this.titulo} de ${this.autor}, ${this.paginas} páginas, ${textoLido}`;
     };
 
-    Book.prototype.toggleRead = function() {
-      this.read = !this.read;
-      return this.read;
+    Livro.prototype.alternarLido = function() {
+      this.lido = !this.lido;
+      return this.lido;
     };
 
-    // Passo 3: data store
-    const myLibrary = [];
-    function addBookToLibrary({ title, author, pages, read }) {
-      const book = new Book(title, author, pages, read);
-      myLibrary.push(book);
-      return book;
+    // ----- Armazenamento dos livros (array) -----
+    const minhaBiblioteca = [];
+
+    function adicionarLivroNaBiblioteca({ titulo, autor, paginas, lido }) {
+      const livro = new Livro(titulo, autor, paginas, lido);
+      minhaBiblioteca.push(livro);
+      return livro;
     }
 
-    // Passo 4: render
-    const libraryContainer = document.getElementById('library');
-    function renderLibrary() {
-      libraryContainer.innerHTML = '';
-      myLibrary.forEach(book => {
+    // ----- Renderizar a biblioteca no DOM -----
+    const containerBiblioteca = document.getElementById('biblioteca');
+
+    function renderizarBiblioteca() {
+      containerBiblioteca.innerHTML = '';
+      minhaBiblioteca.forEach(livro => {
         const card = document.createElement('article');
-        card.className = 'book-card';
-        card.dataset.id = book.id;
+        card.className = 'cartao-livro';
+        card.dataset.identificador = livro.identificador;
 
         card.innerHTML = `
-          <h4>${book.title}</h4>
-          <p>Autor: ${book.author}</p>
-          <p>Páginas: ${book.pages}</p>
-          <p>Status: <span class="read-status">${book.read ? 'Lido' : 'Não lido'}</span></p>
-          <div class="controls">
-            <button class="toggle-read">Alternar Leitura</button>
-            <button class="remove-book">Remover</button>
+          <h4>${livro.titulo}</h4>
+          <p>Autor: ${livro.autor}</p>
+          <p>Páginas: ${livro.paginas}</p>
+          <p>Status: <span class="status-lido">${livro.lido ? 'Lido' : 'Não lido'}</span></p>
+          <div class="controles">
+            <button class="botao-alternar-lido">Alternar Leitura</button>
+            <button class="botao-remover">Remover</button>
           </div>
         `;
 
-        const toggleBtn = card.querySelector('.toggle-read');
-        const removeBtn = card.querySelector('.remove-book');
+        const btnAlternar = card.querySelector('.botao-alternar-lido');
+        const btnRemover = card.querySelector('.botao-remover');
 
-        toggleBtn.addEventListener('click', () => toggleBookRead(book.id));
-        removeBtn.addEventListener('click', () => removeBook(book.id));
+        btnAlternar.addEventListener('click', () => alternarLeituraLivro(livro.identificador));
+        btnRemover.addEventListener('click', () => removerLivro(livro.identificador));
 
-        libraryContainer.appendChild(card);
+        containerBiblioteca.appendChild(card);
       });
     }
 
-    // Passo 5: remove/toggle
-    function removeBook(id) {
-      const idx = myLibrary.findIndex(b => b.id === id);
-      if (idx === -1) return;
-      myLibrary.splice(idx, 1);
-      renderLibrary();
+    // ----- Remover e alternar status -----
+    function removerLivro(identificador) {
+      const indice = minhaBiblioteca.findIndex(b => b.identificador === identificador);
+      if (indice === -1) return;
+      minhaBiblioteca.splice(indice, 1);
+      renderizarBiblioteca();
     }
 
-    function toggleBookRead(id) {
-      const book = myLibrary.find(b => b.id === id);
-      if (!book) return;
-      book.toggleRead();
-      renderLibrary();
+    function alternarLeituraLivro(identificador) {
+      const livro = minhaBiblioteca.find(b => b.identificador === identificador);
+      if (!livro) return;
+      livro.alternarLido();
+      renderizarBiblioteca();
     }
 
-    // Passo 6: form/dialog handling
-    const newBookBtn = document.getElementById('newBookBtn');
-    const bookDialog = document.getElementById('bookDialog');
-    const bookForm = document.getElementById('bookForm');
-    const cancelBtn = document.getElementById('cancelBtn');
+    // ----- Formulário / diálogo -----
+    const botaoNovoLivro = document.getElementById('botaoNovoLivro');
+    const dialogoLivro = document.getElementById('dialogoLivro');
+    const formLivro = document.getElementById('formLivro');
+    const botaoCancelar = document.getElementById('botaoCancelar');
 
-    newBookBtn.addEventListener('click', () => bookDialog.showModal());
-    cancelBtn.addEventListener('click', () => bookDialog.close());
+    botaoNovoLivro.addEventListener('click', () => dialogoLivro.showModal());
+    botaoCancelar.addEventListener('click', () => dialogoLivro.close());
 
-    bookForm.addEventListener('submit', (event) => {
+    formLivro.addEventListener('submit', (event) => {
       event.preventDefault();
-      const formData = new FormData(bookForm);
-      const data = {
-        title: formData.get('title').trim(),
-        author: formData.get('author').trim(),
-        pages: formData.get('pages'),
-        read: formData.get('read') === 'on'
+      const formData = new FormData(formLivro);
+      const dados = {
+        titulo: formData.get('titulo').trim(),
+        autor: formData.get('autor').trim(),
+        paginas: formData.get('paginas'),
+        lido: formData.get('lido') === 'on'
       };
-      addBookToLibrary(data);
-      bookForm.reset();
-      bookDialog.close();
-      renderLibrary();
+      adicionarLivroNaBiblioteca(dados);
+      formLivro.reset();
+      dialogoLivro.close();
+      renderizarBiblioteca();
     });
 
-    // Passo 7: init
+    // ----- Inicialização com exemplos -----
     document.addEventListener('DOMContentLoaded', () => {
-      addBookToLibrary({ title: 'The Hobbit', author: 'J.R.R. Tolkien', pages: 295, read: false });
-      addBookToLibrary({ title: 'Clean Code', author: 'Robert C. Martin', pages: 464, read: true });
-      renderLibrary();
+      adicionarLivroNaBiblioteca({ titulo: 'The Hobbit', autor: 'J.R.R. Tolkien', paginas: 295, lido: false });
+      adicionarLivroNaBiblioteca({ titulo: 'Clean Code', autor: 'Robert C. Martin', paginas: 464, lido: true });
+      renderizarBiblioteca();
     });

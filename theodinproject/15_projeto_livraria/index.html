@@ -7,34 +7,34 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button id="newBookBtn">Novo Livro</button>
+  <button id="botaoNovoLivro">Novo Livro</button>
 
   <main>
-    <section id="library"></section>
+    <section id="biblioteca"></section>
   </main>
 
-  <dialog id="bookDialog">
-    <form id="bookForm">
+  <dialog id="dialogoLivro">
+    <form id="formLivro">
       <h3>Novo Livro</h3>
       <label>
         Título
-        <input name="title" required />
+        <input name="titulo" required />
       </label>
       <label>
         Autor
-        <input name="author" required />
+        <input name="autor" required />
       </label>
       <label>
         Páginas
-        <input name="pages" type="number" min="1" required />
+        <input name="paginas" type="number" min="1" required />
       </label>
       <label>
         Lido?
-        <input name="read" type="checkbox" />
+        <input name="lido" type="checkbox" />
       </label>
       <menu>
         <button type="submit">Adicionar</button>
-        <button type="button" id="cancelBtn">Cancelar</button>
+        <button type="button" id="botaoCancelar">Cancelar</button>
       </menu>
     </form>
   </dialog>
