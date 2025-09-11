@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Contadores Interativos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+        .contador {
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .valor {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="contadorA" class="contador">
+        <div class="valor">0</div>
+        <button>Incrementar</button>
+        <button>Resetar</button>
+        <button>Mostrar</button>
+    </div>
+
+    <div id="contadorB" class="contador">
+        <div class="valor">0</div>
+        <button>Incrementar</button>
+        <button>Resetar</button>
+        <button>Mostrar</button>
+    </div>
+
+    <div id="contadorC" class="contador">
+        <div class="valor">0</div>
+        <button>Incrementar</button>
+        <button>Resetar</button>
+        <button>Mostrar</button>
+    </div>
+
+    <script>
+        // Factory Function + Module Pattern + Closure
+        function criarModuloContador(displayElement) {
+            let count = 0; // Closure protege count
+
+            function atualizarDisplay() {
+                displayElement.textContent = count;
+            }
+
+            function incrementar() {
+                count++;
+                atualizarDisplay();
+            }
+
+            function resetar() {
+                count = 0;
+                atualizarDisplay();
+            }
+
+            function mostrar() {
+                alert("Valor atual: " + count);
+            }
+
+            return {
+                incrementar,
+                resetar,
+                mostrar
+            };
+        }
+
+        // Função para inicializar cada contador
+        function iniciarContador(contadorDiv) {
+            const display = contadorDiv.querySelector('.valor');
+            const buttons = contadorDiv.querySelectorAll('button');
+
+            const contador = criarModuloContador(display);
+
+            buttons[0].addEventListener('click', contador.incrementar);
+            buttons[1].addEventListener('click', contador.resetar);
+            buttons[2].addEventListener('click', contador.mostrar);
+        }
+
+        // Inicializando os três contadores
+        document.querySelectorAll('.contador').forEach(iniciarContador);
+    </script>
+
+</body>
+</html>
