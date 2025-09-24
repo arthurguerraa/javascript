@@ -55,10 +55,11 @@ body{
     background-color: blue;
 }
 
-.botoes button{
+.botoes button, .botoes-2 button{
     height: 50px;
     width: 70px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .botoes-2{
@@ -72,8 +73,10 @@ body{
     background-color: cadetblue;
 }
 
-.botoes-2 button{
-    height: 50px;
-    width: 70px;
-    padding: 10px;
+.selected{
+    background-color: #007bff; /* Ou a cor que você preferir */
+    color: #fff;
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
+

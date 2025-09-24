@@ -3,20 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pedra Papel Tesoura</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS BÁSICO PARA DEMONSTRAÇÃO E CLASSE 'SELECTED' */
+        .selected {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Pedra Papel Tesoura</h1>
+        <p id="rodada">Faça sua escolha para começar!</p> 
         <div class="placar">
             <div id="jogador" class="jogador">Jogador: 0</div>
             <div id="computador" class="computador">Computador: 0</div>
         </div>
         <div class="botoes">
-            <button id="pedra">Pedra</button>
-            <button id="papel">Papel</button>
-            <button id="tesoura">Tesoura</button>
+            <button id="pedra" data-choice="pedra">Pedra</button>
+            <button id="papel" data-choice="papel">Papel</button>
+            <button id="tesoura" data-choice="tesoura">Tesoura</button>
         </div>
         <div class="botoes-2">
             <button id="jogar">Jogar</button>
@@ -24,6 +34,106 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // 1. SELEÇÃO DE ELEMENTOS (DOM)
+        const rodadaEl = document.querySelector('#rodada');
+        const jogadorEl = document.querySelector('#jogador');
+        const computadorEl = document.querySelector('#computador');
+        const btnJogar = document.querySelector('#jogar');
+        const btnResetar = document.querySelector('#resetar');
+        const botoesEscolha = document.querySelectorAll('.botoes button'); // Seleciona todos os botões de escolha
+
+        // 2. VARIÁVEIS DE ESTADO DO JOGO
+        let escolhaDoJogador = "";
+        let placarJogador = 0;
+        let placarComputador = 0;
+
+        // 3. FUNÇÕES DO JOGO
+        
+        // Gera a escolha aleatória do computador
+        function escolhaComputador() {
+            const opcoes = ["pedra", "papel", "tesoura"];
+            let escolha = Math.floor(Math.random() * 3);
+            return opcoes[escolha];
+        }
+
+        // Lógica para determinar o resultado
+        function determinarVencedor(escolha1, escolha2) {
+            if (escolha1 === escolha2) {
+                return 'Empate!';
+            } else if (
+                (escolha1 === 'pedra' && escolha2 === 'tesoura') ||
+                (escolha1 === 'papel' && escolha2 === 'pedra') ||
+                (escolha1 === 'tesoura' && escolha2 === 'papel')
+            ) {
+                return 'Vitória!';
+            } else {
+                return 'Derrota!';
+            }
+        }
+
+        // Atualiza o placar na tela
+        function atualizarPlacar() {
+            jogadorEl.textContent = `Jogador: ${placarJogador}`;
+            computadorEl.textContent = `Computador: ${placarComputador}`;
+        }
+        
+        // Função principal do jogo
+        function partida() {
+            if (escolhaDoJogador === "") {
+                rodadaEl.textContent = "Por favor, escolha Pedra, Papel ou Tesoura antes de jogar!";
+                return;
+            }
+
+            const escolhaDoComputador = escolhaComputador();
+            const resultado = determinarVencedor(escolhaDoJogador, escolhaDoComputador);
+
+            // 4. ATUALIZAÇÃO DO PLACAR E MENSAGEM
+            if (resultado === 'Vitória!') {
+                placarJogador++;
+            } else if (resultado === 'Derrota!') {
+                placarComputador++;
+            }
+
+            atualizarPlacar();
+            rodadaEl.textContent = `Você escolheu ${escolhaDoJogador}. O Computador escolheu ${escolhaDoComputador}. Resultado: ${resultado}`;
+        }
+
+        // 5. EVENT LISTENERS (ESCOLHAS E BOTÕES)
+
+        // Eventos de clique nas opções (Pedra, Papel, Tesoura)
+        botoesEscolha.forEach(botao => {
+            botao.addEventListener('click', () => {
+                // Remove a classe 'selected' de todos e adiciona apenas ao clicado
+                botoesEscolha.forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                botao.classList.add('selected');
+                
+                // Salva a escolha do jogador
+                escolhaDoJogador = botao.dataset.choice;
+            });
+        });
+
+        // Evento do botão Jogar
+        btnJogar.addEventListener('click', partida);
+        
+        // Evento do botão Resetar
+        btnResetar.addEventListener('click', () => {
+            placarJogador = 0;
+            placarComputador = 0;
+            escolhaDoJogador = "";
+            atualizarPlacar();
+            rodadaEl.textContent = "Placar zerado! Faça sua nova escolha.";
+            
+            // Remove o visual de seleção
+            botoesEscolha.forEach(btn => {
+                btn.classList.remove('selected');
+            });
+        });
+        
+        // Inicializa o placar
+        atualizarPlacar();
+    </script>
 </body>
 </html>
