@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 500px;
+    width: 500px;
+}
+
+.placar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    background-color: chartreuse;
+    height: 100px;
+    width: 300px;
+}
+
+.jogador, .computador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 140px;
+    border: 1px black solid;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: aliceblue;
+}
+
+.botoes{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    height: 100px;
+    width: 300px;
+    background-color: blue;
+}
+
+.botoes button{
+    height: 50px;
+    width: 70px;
+    padding: 10px;
+}
+
+.botoes-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    height: 150px;
+    width: 300px;
+    background-color: cadetblue;
+}
+
+.botoes-2 button{
+    height: 50px;
+    width: 70px;
+    padding: 10px;
+}
