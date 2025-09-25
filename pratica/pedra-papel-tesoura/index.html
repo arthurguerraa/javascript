@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Pedra Papel Tesoura</h1>
-        <p id="rodada"></p>
+        <p id="res"></p>
         <div class="placar">
             <div id="jogador" class="jogador">Jogador: 0</div>
             <div id="computador" class="computador">Computador: 0</div>
@@ -26,7 +26,7 @@
     </div>
 
     <script>
-        const rodada = document.querySelector('#rodada');
+        const res = document.querySelector('#res');
         const jogador = document.querySelector('#jogador');
         const computador = document.querySelector('#computador');
         const btnPedra = document.querySelector('#pedra');
@@ -36,6 +36,9 @@
         const btnResetar = document.querySelector('#resetar');
 
         let escolhaJogador = '';
+        let humanScore = 0;
+        let computerScore = 0;
+        let rodada = 1;
 
         function escolhaComputador(){
             const opcoes = ["pedra", "papel", "tesoura"];
@@ -69,7 +72,7 @@
         });
 
 
-        function partida(){
+        function partida(escolhaJogador, escolhaComputador){
             if(escolhaJogador === escolhaComputador){
                 return 'Empate!';
             }else if(
@@ -83,7 +86,50 @@
             }
         }
 
-        
+        btnJogar.addEventListener('click', () =>{
+            if(escolhaJogador === ""){
+                res.innerHTML = "Escolha pedra, papel ou tesoura antes de jogar!";
+                return;
+            }
+            const escolhaPc = escolhaComputador();
+            const resultado = partida(escolhaJogador, escolhaPc);
+
+            if(resultado === "Vitória!"){
+                humanScore ++;
+            }else if(resultado === "Derrota!"){
+                computerScore++
+            }
+
+            res.innerHTML = `Rodada ${rodada}: ${resultado}`
+            jogador.innerHTML = `Jogador: ${humanScore}`
+            computador.innerHTML = `Computador: ${computerScore}`
+            rodada++;
+
+            if(humanScore === 5){
+                res.innerHTML += "<br>Parabéns! Você ganhou o jogo!";
+                btnJogar.disabled = true;
+            }else if(computerScore === 5){
+                res.innerHTML += "<br>O computador ganhou o jogo!";
+                btnJogar.disabled = true;
+            }
+        });
+
+        btnResetar.addEventListener('click', () => {
+            humanSelection = "";
+            humanScore = 0;
+            computerScore = 0;
+            rodada = 1;
+            res.innerHTML = "";
+            jogador.innerHTML = "";
+            computador.innerHTML = "";
+            btnJogar.disabled = false;
+            jogador.innerHTML = `Jogador: ${humanScore}`;
+            computador.innerHTML = `Computador: ${computerScore}`
+            
+            
+            botoes.forEach(b => b.classList.remove('selected'));
+        });
+
     </script>
 </body>
 </html>
