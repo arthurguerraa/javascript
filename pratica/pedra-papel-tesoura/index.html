@@ -35,6 +35,7 @@
         const btnJogar = document.querySelector('#jogar');
         const btnResetar = document.querySelector('#resetar');
 
+        let escolhaJogador = '';
 
         function escolhaComputador(){
             const opcoes = ["pedra", "papel", "tesoura"];
@@ -43,16 +44,29 @@
         }
 
         btnPedra.addEventListener('click', () => {
-            return 'pedra';
+            escolhaJogador = 'pedra';
+            return escolhaJogador;
         });
 
         btnPapel.addEventListener('click', () => {
-            return 'papel';
+            escolhaJogador = 'papel';
+            return escolhaJogador;
         });
 
         btnTesoura.addEventListener('click', () => {
-            return 'tesoura';
+            escolhaJogador = 'tesoura';
+            return escolhaJogador;
         })
+
+        const botoes = [btnPedra, btnPapel, btnTesoura];
+
+        botoes.forEach(botao => {
+            botao.addEventListener('click', () =>{
+                botoes.forEach(b => b.classList.remove('selected'));
+
+                botao.classList.add('selected')
+            });
+        });
 
 
         function partida(){
